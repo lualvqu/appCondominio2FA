@@ -1,0 +1,313 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"prom",
+				"prompt\t( message?: DOMString, default?: DOMString ): DOMString Window"
+			],
+			[
+				"prompt",
+				"prompt"
+			],
+			[
+				"teste",
+				"fucaoTeste"
+			],
+			[
+				"for",
+				"forEach"
+			],
+			[
+				"nume",
+				"numeros"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 24,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"codeintel",
+				"SublimeCodeIntel: Enable Live Autocompletion for Current Language"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"mon",
+				"Monokai Pro: select theme"
+			],
+			[
+				"isntall ",
+				"Package Control: Install Package"
+			],
+			[
+				"monka",
+				"Monokai Pro: select theme"
+			],
+			[
+				"monek",
+				"Monokai Pro: select theme"
+			],
+			[
+				"theme",
+				"Monokai Pro: select theme"
+			],
+			[
+				"monokai",
+				"Monokai Pro: select theme"
+			],
+			[
+				"packa\t",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/Lucas/Documents/Repositorios/appCondominio2FA",
+		"/D/Lucas/Documents/Repositorios/appCondominio2FA/src"
+	],
+	"file_history":
+	[
+		"/D/Lucas/Desktop/calculadora.py",
+		"/D/Lucas/Documents/Repositorios/appCondominio2FA/src/teste.js",
+		"/D/Lucas/Documents/Repositorios/appCondominio2FA/README.md",
+		"/D/Lucas/Documents/Repositorios/appCondominio2FA/.gitignore",
+		"/D/Lucas/Pictures/Wallpapers/teste.js",
+		"/D/Lucas/Pictures/Wallpapers/index.html",
+		"/D/Lucas/Desktop/Lote2MainFrame/FTCOB013",
+		"/D/Lucas/Desktop/Lote2MainFrame/FTCOB014",
+		"/D/Lucas/Desktop/Lote2MainFrame/FTCOB015",
+		"/D/Lucas/Desktop/Lote2MainFrame/FTJB1011",
+		"/D/Lucas/Desktop/Lote2MainFrame/FTJB1213",
+		"/D/Lucas/Desktop/Lote2MainFrame/FTJB1415",
+		"/D/Lucas/Desktop/Lote2MainFrame/FTJOB009",
+		"/D/Lucas/Desktop/Lote2MainFrame/FTJOB010",
+		"/D/Lucas/Desktop/Lote2MainFrame/FTJOB011",
+		"/D/Lucas/Desktop/Lote2MainFrame/FTJOB012",
+		"/D/Lucas/Desktop/Lote2MainFrame/FTJOB013",
+		"/D/Lucas/Desktop/Lote2MainFrame/FTJOB014",
+		"/D/Lucas/Desktop/Lote2MainFrame/FTJOB015",
+		"/D/Lucas/Desktop/Lote2MainFrame/FTCOB009",
+		"/D/Lucas/Desktop/Lote2MainFrame/FTCOB010",
+		"/D/Lucas/Desktop/Lote2MainFrame/FTCOB011",
+		"/D/Lucas/Desktop/Lote2MainFrame/FTCOB012",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/D/Lucas/Desktop/MAINFRAME/Exercicios Para Entregar/Lote02/FTCOB011",
+		"/D/Lucas/Desktop/MAINFRAME/Exercicios Para Entregar/LOTE 02/FTJOB011",
+		"/D/Lucas/Desktop/MAINFRAME/Exercicios Para Entregar/LOTE 2 - COBOL - Jack/FTJOB011",
+		"/D/Lucas/Desktop/MAINFRAME/Exercicios Para Entregar/LOTE 2 - COBOL - Jack/FTCOB011",
+		"/D/Lucas/Desktop/P2/Mais 1 P2/PGJOB001",
+		"/D/Lucas/Desktop/P2/ADSMA5 - P2 - JACKELINE/PGJOB001",
+		"/D/Lucas/Desktop/MAINFRAME/PROVAS/P2/P2Joice/PGMB2001",
+		"/D/Lucas/Desktop/MAINFRAME/PROVAS/P2/ADSMA5 - P2 - JACKELINE/PGMB2001",
+		"/D/Lucas/Desktop/MAINFRAME/PROVAS/P2/Mais 1 P2/PGMB2001",
+		"/D/Lucas/Desktop/MAINFRAME/PROVAS/P2/Mais 2 P2/PGMB2001",
+		"/D/Lucas/Desktop/MAINFRAME/PROVAS/P2/Outra P2/PGMB2001",
+		"/D/Lucas/Desktop/MAINFRAME/PROVAS/P2/N2 COBOL/PGMB2001",
+		"/D/Lucas/Desktop/P2/ADSMA5 - P2 - JACKELINE/PGMB2002",
+		"/D/Lucas/Desktop/MAINFRAME/PROVAS/P2/ADSMA5 - P2/PGMB2001",
+		"/D/Lucas/Desktop/MAINFRAME/PROVAS/P2/PGMB2001",
+		"/D/Lucas/Desktop/MAINFRAME/PROVAS/P2/N2 COBOL/PGMB2002",
+		"/D/Lucas/Desktop/MAINFRAME/PROVAS/P2/Mais 2 P2/PGMB2002",
+		"/D/Lucas/Desktop/MAINFRAME/PROVAS/P2/Mais 1 P2/PGMB2002",
+		"/D/Lucas/Desktop/MAINFRAME/PROVAS/P2/ADSMA5 - P2 - JACKELINE/PGMB2002",
+		"/D/Lucas/Desktop/MAINFRAME/PROVAS/P2/ADSMA5 - P2/PGMB2002",
+		"/D/Lucas/Desktop/MAINFRAME/Exercicios Para Entregar/LOTE 2 - COBOL - Jack/FTCOB009",
+		"/D/Lucas/Desktop/FTCOB010",
+		"/D/Lucas/Desktop/MAINFRAME/Exercicios Para Entregar/LOTE 02/FTJOB009"
+	],
+	"find":
+	{
+		"height": 33.0
+	},
+	"find_in_files":
+	{
+		"height": 117.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": ".gitignore",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 24,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Git Formats/Git Ignore.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 33.0
+	},
+	"input":
+	{
+		"height": 56.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "projetoTCC.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 252.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
