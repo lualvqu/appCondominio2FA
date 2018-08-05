@@ -36,8 +36,8 @@ let historico = [
 ]
 
 /* GET home page. */
-router.get('/', authenticationMiddleware (), function(req, res, next) {
-  res.render('indexold', { 
+router.get('/', authenticationMiddleware(), function(req, res, next) {
+  res.render('index', { 
     getDate: dateUtils.getDate,
     getDayWeek: dateUtils.getDayWeek,
     getMonth: dateUtils.getMonth,
@@ -57,7 +57,7 @@ router.get('/login', function(req, res){
 
 /* POST Roda para enviar a requisicao de login e validar as inf */
 router.post('/login',
-  passport.authenticate('local', { successRedirect: '/indexold', failureRedirect: '/login?fail=true' })
+  passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login?fail=true' })
 );
 
 module.exports = router;
