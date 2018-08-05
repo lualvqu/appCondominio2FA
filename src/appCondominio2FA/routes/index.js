@@ -1,6 +1,17 @@
 var express = require('express');
 var router = express.Router();
-const dateUtils = require('../public/utils/dateUtils.js');
+var passport = require('passport');
+const dateUtils = require('../lib/utils/dateUtils.js');
+
+// Definindo Middleware de autenticacao
+function authenticationMiddleware () {  
+  return function (req, res, next) {
+    if (req.isAuthenticated()) {
+      return next()
+    }
+    res.redirect('/login')
+  }
+}
 
 //Dados Mockados para teste
 let historico = [
@@ -25,14 +36,28 @@ let historico = [
 ]
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { 
+router.get('/', authenticationMiddleware (), function(req, res, next) {
+  res.render('indexold', { 
     getDate: dateUtils.getDate,
     getDayWeek: dateUtils.getDayWeek,
     getMonth: dateUtils.getMonth,
-    historico: historico
+    historico: historico,
+    username: req.user.username
 }
 );
 });
+
+/* GET Rota da tela de Login */
+router.get('/login', function(req, res){
+  if(req.query.fail)
+    res.render('login', { message: 'Usuário e/ou senha incorretos!' });
+  else
+    res.render('login', { message: null });
+});
+
+/* POST Roda para enviar a requisicao de login e validar as inf */
+router.post('/login',
+  passport.authenticate('local', { successRedirect: '/indexold', failureRedirect: '/login?fail=true' })
+);
 
 module.exports = router;

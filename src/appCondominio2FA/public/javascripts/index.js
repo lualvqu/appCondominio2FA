@@ -24,7 +24,8 @@ $(document).ready(function() {
     var that = this;
     ripple($(that), e);
     $(that).addClass("processing");
-    setTimeout(function() {
+    console.log(that.form[1].value);
+    /*setTimeout(function() {
       //Desligado Validaçao -- Logando sempre com sucesso
       $(that).addClass("success");
       setTimeout(function() {
@@ -38,7 +39,7 @@ $(document).ready(function() {
         animating = false;
         $(that).removeClass("success processing");
       }, submitPhase2);
-    }, submitPhase1);
+    }, submitPhase1)*/;
   });
   
   $(document).on("click", ".app__logout", function(e) {
