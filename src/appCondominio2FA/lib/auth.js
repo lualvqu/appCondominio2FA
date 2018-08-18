@@ -1,7 +1,14 @@
-const bcrypt = require('bcrypt')  
+const crypto = require('crypto');
 const LocalStrategy = require('passport-local').Strategy
 
 module.exports = function(passport) {
+
+// ========= Criptografar senha para hash ========== //
+const strToHash = function (string) {
+    return crypto.createHmac('sha256', string)
+                    .update('Incremento de salt para aumentar a seguranca')
+                    .digest('hex');
+};
 
 // =========  Area de Busca de Usuario no Banco de Dados ========= //
 function findUser(username, callback){
@@ -36,17 +43,15 @@ passport.use(new LocalStrategy( {
 },
 (username, password, done) => {
     findUser(username, (err, user) => {
-      if (err) { return done(err) }
         
-          // usuário inexistente
-      if (!user) { return done(null, false) }
-        
-          // comparando as senhas
-      bcrypt.compare(password, user.password, (err, isValid) => {
         if (err) { return done(err) }
-            if (!isValid) { return done(null, false) }
-                return done(null, user)
-        })
+        
+        // usuário inexistente
+        if (!user) { return done(null, false) }
+        
+        // comparando as senhas
+        if(strToHash(password) == user.password){ return done(null, user); }
+        else { return done(null, false); }
   })
 }
 ));

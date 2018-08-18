@@ -9,7 +9,7 @@ function authenticationMiddleware () {
     if (req.isAuthenticated()) {
       return next()
     }
-    res.redirect('/login')
+    res.redirect('/')
   }
 }
 
@@ -36,28 +36,45 @@ let historico = [
 ]
 
 /* GET home page. */
-router.get('/', authenticationMiddleware(), function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.render('index', { 
     getDate: dateUtils.getDate,
     getDayWeek: dateUtils.getDayWeek,
     getMonth: dateUtils.getMonth,
-    historico: historico,
-    username: req.user.username
+    historico: historico//,
+    //username: req.user.username
 }
 );
 });
 
-/* GET Rota da tela de Login */
+/* GET home page. */
+router.get('/sucesso', authenticationMiddleware(), function(req, res, next) {
+  res.render('indexold', { 
+    title:"tela de sucesso"
+}
+);
+});
+
+/* GET Nova Tela */
+router.get('/tela', function(req, res, next) {
+  res.render('newLogin', { 
+    title:"tela de sucesso"
+}
+);
+});
+
+/* GET Rota da tela de Login 
 router.get('/login', function(req, res){
   if(req.query.fail)
     res.render('login', { message: 'Usuário e/ou senha incorretos!' });
   else
     res.render('login', { message: null });
-});
+});*/
 
 /* POST Roda para enviar a requisicao de login e validar as inf */
 router.post('/login',
-  passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login?fail=true' })
+  passport.authenticate('local', { successRedirect: '/sucesso', failureRedirect: '/?fail=true' })
+  //passport.authenticate('local', { failureFlash: 'Invalid username or password.' })
 );
 
 module.exports = router;
