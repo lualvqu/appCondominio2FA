@@ -1,21 +1,8 @@
 const crypt = require('./utils/crypt');
+const db = require('./db');
 const LocalStrategy = require('passport-local').Strategy
 
 module.exports = function(passport) {
-
-// =========  Area de Busca de Usuario no Banco de Dados ========= //
-function findUser(username, callback){
-    global.db.collection("users").findOne({"username": username}, function(err, doc){
-        callback(err, doc);
-    });
-}
-
-function findUserById(id, callback){
-    const ObjectId = require("mongodb").ObjectId;
-    global.db.collection("users").findOne({_id: ObjectId(id) }, (err, doc) => {
-        callback(err, doc);
-    });
-}
 
 // =========  Funções de serialização e desserialização de usuário ========= //
 passport.serializeUser(function(user, done){
@@ -23,7 +10,7 @@ passport.serializeUser(function(user, done){
 });
 
 passport.deserializeUser(function(id, done){
-    findUserById(id, function(err,user){
+    db.findUserById(id, function(err,user){
         done(err, user);
     });
 });
@@ -35,7 +22,7 @@ passport.use(new LocalStrategy( {
     passwordField: 'password'
 },
 (username, password, done) => {
-    findUser(username, (err, user) => {
+    db.findUser(username, (err, user) => {
         
         if (err) { return done(err) }
         
