@@ -1,14 +1,7 @@
-const crypto = require('crypto');
+const crypt = require('./utils/crypt');
 const LocalStrategy = require('passport-local').Strategy
 
 module.exports = function(passport) {
-
-// ========= Criptografar senha para hash ========== //
-const strToHash = function (string) {
-    return crypto.createHmac('sha256', string)
-                    .update('Incremento de salt para aumentar a seguranca')
-                    .digest('hex');
-};
 
 // =========  Area de Busca de Usuario no Banco de Dados ========= //
 function findUser(username, callback){
@@ -50,7 +43,7 @@ passport.use(new LocalStrategy( {
         if (!user) { return done(null, false) }
         
         // comparando as senhas
-        if(strToHash(password) == user.password){ return done(null, user); }
+        if(crypt.strToHash(password) == user.password){ return done(null, user); }
         else { return done(null, false); }
   })
 }
