@@ -6,9 +6,12 @@
   <body>
     <h1>Signup</h1>
     <form action="/users/signup" method="POST">
-      Username: <input name="username" type="text" /><br />
-      Password: <input name="password" type="password" /><br />
-      E-mail: <input name="email" type="text" /><br />
+      <label for="username">Username: </label><input name="username" type="text" /><br />
+      <label for="password">Password: </label><input name="password" type="password" /><br />
+      <label for="rg">RG: </label><input name="rg" type="text"> <br />
+      <label for="apartamento">Apartamento: </label><input type="text" name="apartamento" /> <br />
+      <label for="bloco">Bloco: </label><input type="text" name="bloco" /> <br />
+      <label for="email">E-mail: </label><input name="email" type="text" /><br />
       <input type="submit" value="Cadastrar" />
     </form>
     <% if(message) { %>

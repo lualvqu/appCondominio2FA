@@ -10,7 +10,7 @@ passport.serializeUser(function(user, done){
 });
 
 passport.deserializeUser(function(id, done){
-    db.findUserById(id, function(err,user){
+    db.findById(id, "users", function(err,user){
         done(err, user);
     });
 });
@@ -28,7 +28,6 @@ passport.use(new LocalStrategy( {
         
         // usuário inexistente
         if (!user) { return done(null, false) }
-        
         // comparando as senhas
         if(crypt.strToHash(password) == user.password){ return done(null, user); }
         else { return done(null, false); }

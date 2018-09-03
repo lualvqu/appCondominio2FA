@@ -37,19 +37,12 @@ let historico = [
 
 /* GET home page. */
 router.get('/', authenticationMiddleware(), function(req, res, next) {
-  res.render('index', { 
-    getDate: dateUtils.getDate,
-    getDayWeek: dateUtils.getDayWeek,
-    getMonth: dateUtils.getMonth,
-    historico: historico,
-    username: req.user.username
-}
-);
+  res.render('Index/home.ejs', {});
 });
 
 /* GET home page. */
 router.get('/sucesso', authenticationMiddleware(), function(req, res, next) {
-  res.render('telaTeste', { 
+  res.render('Index/home.ejs', { 
     title:"tela de sucesso"
 }
 );
@@ -65,7 +58,20 @@ router.get('/login', function(req, res){
 
 /* POST Roda para enviar a requisicao de login e validar as inf */
 router.post('/login',
-  passport.authenticate('local', { successRedirect: '/sucesso', failureRedirect: '/login/?fail=true' })
+  passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login/?fail=true' })
 );
+
+
+// ==============================================================================================//
+      /* ROTA DE TESTE QUE CHAMA A VIEW DE TESTE PARA TESTAR FUNCOES E MANDAR PARA A TELA */
+// ==============================================================================================//
+router.get('/teste', function(req, res, next) {
+  global.db.collection("users").find({username:"lucas", email:"lucas@l*"}).toArray(function (err, result){
+    res.render('telaTeste.ejs', { 
+      lista:result
+    });
+  });
+});
+
 
 module.exports = router;

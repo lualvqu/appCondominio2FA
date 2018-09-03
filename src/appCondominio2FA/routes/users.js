@@ -21,29 +21,4 @@ router.post('/signup', function(req, res, next){
   });
 });
 
-
-
-/* ============ ROTAS VISITANTE ================ */
-
-/* Roda de GET para criar um novo visitante */
-router.get('/visitante/novo', function(req, res, next){
-  res.render('visitanteCreate', {});
-});
-
-/* Rota de POST para criar um novo visitante */
-router.post('/visitante/novo', function(req, res, next){
-  let visitante = {
-    nome: req.body.nome,
-    rg:req.body.rg,
-    cpf:req.body.cpf,
-    telefoneFixo:req.body.telefoneFixo,
-    celular:req.body.celular,
-    email:req.body.email
-  }
-  db.createVisitante(visitante,(err, result) => {
-    if (err) res.redirect('/visitante/novo?fail=true');
-    res.redirect('/');
-  });
-});
-
 module.exports = router;

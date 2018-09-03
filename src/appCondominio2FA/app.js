@@ -11,6 +11,8 @@ const MongoStore = require('connect-mongo')(session);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var visitantesRouter = require('./routes/visitantes');
+
 
 var app = express();
 
@@ -42,8 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Importando as rotas
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
-
+app.use('/visitantes', visitantesRouter);
 
 
 // catch 404 and forward to error handler

@@ -2,7 +2,7 @@ const crypt = require('./utils/crypt');
  
 module.exports = function () { 
     
-    // =========== Area de Inserções no BAnco de Dados =============== //
+    // =========== Area de Inserções no Banco de Dados =============== //
 
     const createUser = function (username, password, email, callback){
         const cryptPwd = crypt.strToHash(password);
@@ -19,23 +19,30 @@ module.exports = function () {
     }
     
     // =========  Area de Busca de Usuario no Banco de Dados ========= //
-    function findUser(username, callback){
+    const findById = function (id, document, callback){
+        const ObjectId = require("mongodb").ObjectId;
+        global.db.collection(document).findOne({_id: ObjectId(id) }, (err, doc) => {
+            callback(err, doc);
+        });
+    }
+
+    const findUser = function (username, callback){
         global.db.collection("users").findOne({"username": username}, function(err, doc){
             callback(err, doc);
         });
     }
-    
-    function findUserById(id, callback){
-        const ObjectId = require("mongodb").ObjectId;
-        global.db.collection("users").findOne({_id: ObjectId(id) }, (err, doc) => {
-            callback(err, doc);
+
+    const findVisitantes = function (filtro, callback){
+        global.db.collection("visitantes").find(filtro).toArray(function(err, results){
+            callback(err, results);
         });
-    }
+    } 
     
     return {
         createUser, 
         createVisitante,
         findUser, 
-        findUserById 
+        findById,
+        findVisitantes
     }
 }();

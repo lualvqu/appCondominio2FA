@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>       
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Tela em Contrução </title>
+        
+        <!-- ==========  CSS Bootstrap Import Zone ========== -->
+        <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css">
+        <!-- ========== CSS Personlizado Import Zone ========== -->
+        <link rel="stylesheet" href="/stylesheets/styleApp.css">  
+    </head>
+    <body>
+        <!-- Content Here -->
+
+        <h1>Visitantes</h1>
+        
+        <a href="/visitantes/novo">cadastrar novo visitante</a> <br/>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>RG</th>
+                    <th>Celular</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%  visitantes.forEach( visitante => { %>
+                    <tr>
+                        <td><%- visitante.nome %></td>
+                        <td><%- visitante.rg %></td>
+                        <td><%- visitante.celular %></td>
+                        <td>Editar</td>
+                        <td>Excluir</td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+
+        <a href="/">Voltar para Home</a>
+        
+        <!-- ========== JS Bootstrap Import Zone ========== -->
+        <script src="/javascripts/bootstrap.min.js"></script>
+        <script src="/javascripts/bootstrap.bundle.min.js"></script>
+        <!-- ========== JS JQuery Import Zone ========== -->
+        <script src="/javascripts/jquery-3.3.1.min.js"></script>
+    </body>
+</html>
