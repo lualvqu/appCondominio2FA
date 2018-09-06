@@ -4,10 +4,9 @@ module.exports = function () {
     
     // =========== Area de Inserções no Banco de Dados =============== //
 
-    const createUser = function (username, password, email, callback){
-        const cryptPwd = crypt.strToHash(password);
-        console.log(cryptPwd);
-        global.db.collection("users").insert({ username, password: cryptPwd, email }, function(err, result){
+    const createUser = function (usuario, callback){
+        usuario.password = crypt.strToHash(usuario.password)
+        global.db.collection("users").insert(usuario, function(err, result){
             callback(err, result);
         });
     }

@@ -15,9 +15,29 @@ router.get('/signup', function(req, res, next) {
  
 /* Rota de POST para criar um novo usuario */ 
 router.post('/signup', function(req, res, next){
-  db.createUser(req.body.username, req.body.password, req.body.email, (err, result) => {
-    if(err) res.redirect('/signup?fail=true');
-    res.redirect('/');
+  let usuario = {
+    username: req.body.username, 
+    password: req.body.password, 
+    email: req.body.email,
+    rg: req.body.rg,
+    apartamento: req.body.apartamento,
+    bloco: req.body.bloco,
+    hashSeed: "",
+    isValido: false
+  }
+
+  console.log("entrou aqui");
+
+  db.findUser(usuario.username, function (err, user){
+    
+    console.log(user);
+    if(!user) { res.redirect('/signup?fail=true&error=usernameError') }
+    
+    db.createUser(usuario, (err, result) => {
+      if(err) res.redirect('/signup?fail=true');
+      res.redirect('/');
+    });
+
   });
 });
 
