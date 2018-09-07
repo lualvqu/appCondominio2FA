@@ -13,39 +13,9 @@ function authenticationMiddleware () {
   }
 }
 
-//Dados Mockados para teste
-let historico = [
-{
-    img: "https://files.gotocon.com/uploads/images/conference_3/topics/63/original/checkmark.svg",
-    status: "Entrada Autoriazada",
-    data: "04/08",
-    hora: "10:40"
-},
-{   
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Emojione1_274C.svg/2000px-Emojione1_274C.svg.png",
-    status: "Código Incorreto",
-    data: "04/08",
-    hora: "10:42"
-},
-{
-    img: "https://files.gotocon.com/uploads/images/conference_3/topics/63/original/checkmark.svg",
-    status: "Entrada Autoriazada",
-    data: "04/08",
-    hora: "10:45"
-}
-]
-
 /* GET home page. */
 router.get('/', authenticationMiddleware(), function(req, res, next) {
   res.render('Index/home.ejs', {});
-});
-
-/* GET home page. */
-router.get('/sucesso', authenticationMiddleware(), function(req, res, next) {
-  res.render('Index/home.ejs', { 
-    title:"tela de sucesso"
-}
-);
 });
 
 /* GET Rota da tela de Login */
@@ -56,7 +26,9 @@ router.get('/login', function(req, res){
     res.render('login', { message: null });
 });
 
-/* POST Roda para enviar a requisicao de login e validar as inf */
+/* POST Roda para enviar a requisicao de login e validar as inf 
+    usando a estrategia de login definida no arquivo /lib/auth.js
+ */
 router.post('/login',
   passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login/?fail=true' })
 );

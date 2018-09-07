@@ -26,15 +26,13 @@ router.post('/signup', function(req, res, next){
     isValido: false
   }
 
-  console.log("entrou aqui");
-
   db.findUser(usuario.username, function (err, user){
     
-    console.log(user);
-    if(!user) { res.redirect('/signup?fail=true&error=usernameError') }
+    console.log("conteuo de err: " + err);
+    if(user) { return res.redirect('/users/signup?fail=true&error=usernameError') }
     
     db.createUser(usuario, (err, result) => {
-      if(err) res.redirect('/signup?fail=true');
+      if(err) res.redirect('/users/signup?fail=true');
       res.redirect('/');
     });
 
