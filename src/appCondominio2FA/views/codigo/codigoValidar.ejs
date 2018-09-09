@@ -3,7 +3,7 @@
     <head>       
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Home </title>
+        <title> Validar código de acesso </title>
         
         <!-- ==========  CSS Bootstrap Import Zone ========== -->
         <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
@@ -14,14 +14,30 @@
     <body>
         <!-- Content Here -->
 
-        <h1 class="m-3">Home</h1>
-
+        <h1 class="m-3">Validar código de acesso</h1>
         <hr/>
+        <div class="m-3">
+            <form method="POST" action="/codigo/autenticar" id="autenticarForm">
+                <label for="bloco">Bloco: </label>
+                <select name="bloco" form="autenticarForm">
+                    <% blocos.forEach(bloco => { %>
+                        <option value="<%- bloco %>"> <%- bloco %> </option>
+                    <% }); %>
+                </select>
+                <br />
+                <label for="apartamento">Apartamento: </label>
+                <input type="number" name="apartamento"/>
+                <br />
+                <label for="codigo">codigo: </label>
+                <input type="number" name="codigo"/>
+                <br />
+                <button class="btn btn-primary" type="submit">Prosseguir</button>
+            </form>
+        </div>
 
-        <a class="btn btn-primary m-3 w-25" href="/visitantes">Visitantes</a> 
-        <a class="btn btn-primary m-3 w-25" href="/visitas">Visitas</a> 
-        <a class="btn btn-primary m-3 w-25" href="/codigo">Cadastrar Código</a>
-        
+
+
+
         <!-- ========== JS Bootstrap Import Zone ========== -->
         <script src="/javascripts/bootstrap.min.js"></script>
         <script src="/javascripts/bootstrap.bundle.min.js"></script>

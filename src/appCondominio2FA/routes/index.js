@@ -15,7 +15,7 @@ function authenticationMiddleware () {
 
 /* GET home page. */
 router.get('/', authenticationMiddleware(), function(req, res, next) {
-  res.render('Index/home.ejs', {});
+  res.render('index/home.ejs', {});
 });
 
 /* GET Rota da tela de Login */

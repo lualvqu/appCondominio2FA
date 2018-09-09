@@ -4,25 +4,30 @@
       <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
 </head>
 <body>
-    <h1>Login</h1>
-    <form action="/login" method="POST">
-        <input name="username" type="text" />
-        <br />
-        <input name="password" type="password" />
-        <br />
-        <input type="submit" value="Login" />
-    </form>
-    <% if(message) { %>
-        <p>
-            <label style="color:Red">
-                <%= message %>
-            </label>
-        </p>
-        <%}%>
+    <h1 class="m-3">Login</h1>
+    <hr/>
+    <div class="m-3">
+        <form action="/login" method="POST">
+            <label for="username">Login: </label>
+            <input name="username" type="text" />
+            <br />
+            <label for="password">Senha: </label>
+            <input name="password" type="password" />
+            <br />
+            <button class="btn btn-primary" type="submit">Login</button>
+        </form>
+        <% if(message) { %>
             <p>
-                <!--a href="/users/forgot">Esqueceu sua senha?</a--> 
-                <a href="/users/signup">Não possui cadastro?</a>
+                <label style="color:Red">
+                    <%= message %>
+                </label>
             </p>
+        <%}%>
+        <p>
+            <!--a href="/users/forgot">Esqueceu sua senha?</a--> 
+            <a href="/users/signup">Não possui cadastro?</a>
+        </p>
+    </div>
 </body>
 
 </html>

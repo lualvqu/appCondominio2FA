@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>       
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Código 2Auth </title>
+        
+        <!-- ==========  CSS Bootstrap Import Zone ========== -->
+        <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css">
+        <!-- ========== CSS Personlizado Import Zone ========== -->
+        <link rel="stylesheet" href="/stylesheets/styleApp.css">  
+    </head>
+    <body>
+        <!-- Content Here -->
+
+        <h1 class="m-3">Código de configuração 2Auth</h1>
+        <hr/>
+
+        <% if (qrCode) { %>
+
+            <h2 class="my-5 ml-3">Utilize o QR código abaixo no seu 2Auth App de preferencia:</h2>
+
+            <div id="imgContainer" class="w-100 d-flex align-items-center justify-content-center">
+            
+                <img class="img-thumbnail" src="<%= qrCode %>"/>
+                <a class="btn btn-primary ml-3" href="/codigo/novoCodigo">Gerar novo código</a>
+            
+            </div>
+
+        <% } else { %>
+
+            <h2 class="my-5 ml-3">Voce nao possui código QR configurado. Deseja gerar um agora?</h2>
+
+            <div id="btnContainer" class="w-100 d-flex align-items-center justify-content-center">
+                <a class="btn btn-primary ml-3" href="/codigo/novoCodigo">Gerar código</a>
+            </div>
+
+        <% } %>
+
+        <br/>
+
+        <a class="btn btn-secondary m-3" href="/">Voltar</a>
+
+
+        <!-- ========== JS Bootstrap Import Zone ========== -->
+        <script src="/javascripts/bootstrap.min.js"></script>
+        <script src="/javascripts/bootstrap.bundle.min.js"></script>
+        <!-- ========== JS JQuery Import Zone ========== -->
+        <script src="/javascripts/jquery-3.3.1.min.js"></script>
+    </body>
+</html>

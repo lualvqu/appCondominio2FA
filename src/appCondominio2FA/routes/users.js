@@ -2,15 +2,28 @@ var express = require('express');
 var router = express.Router();
 const db = require('../lib/db');
 
-
 /* ===============  ROTAS USUARIO ============== */
 
 /* Retorna a View de cadastro de Usuario para Login */
 router.get('/signup', function(req, res, next) {
-  if(req.query.fail)
-    res.render('signup', { message: 'Falha no cadastro do usuário!' });
-  else
-    res.render('signup', { message: null });
+  let message;
+  let blocos;
+  db.getInformacoesCondominio(null, function (err, informacoes) {
+    if (err) {
+      
+      console.log(JSON.stringify(err, null, 2));
+      res.redirect('/');
+    
+    } else {
+
+      informacoes.blocos ? blocos = informacoes.blocos : blocos = null
+      
+      req.query.fail ? message = 'Falha no cadastro do usuário!' : message = null
+      
+      res.render('signup', { message: message, blocos: blocos });
+
+    }
+  });
 });
  
 /* Rota de POST para criar um novo usuario */ 
@@ -28,14 +41,12 @@ router.post('/signup', function(req, res, next){
 
   db.findUser(usuario.username, function (err, user){
     
-    console.log("conteuo de err: " + err);
     if(user) { return res.redirect('/users/signup?fail=true&error=usernameError') }
     
     db.createUser(usuario, (err, result) => {
       if(err) res.redirect('/users/signup?fail=true');
       res.redirect('/');
     });
-
   });
 });
 

@@ -14,34 +14,42 @@
     <body>
         <!-- Content Here -->
 
-        <h1>Visitantes</h1>
+        <h1 class="m-3">Visitantes</h1>
         
-        <a href="/visitantes/novo">cadastrar novo visitante</a> <br/>
+        <hr/>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>RG</th>
-                    <th>Celular</th>
-                    <th>Editar</th>
-                    <th>Excluir</th>
-                </tr>
-            </thead>
-            <tbody>
-                <%  visitantes.forEach( visitante => { %>
+        <a class="btn btn-primary mx-3" href="/visitantes/novo"><b>+</b></a><label>Cadastrar novo visitante</label> <br/>
+
+        <hr/>
+
+        <div class="m-5">
+            <table class="table table-bordered table-hover vertical-center-items">
+                <caption>Lista de visitantes</caption>
+                <thead class="thead-dark">
                     <tr>
-                        <td><%- visitante.nome %></td>
-                        <td><%- visitante.rg %></td>
-                        <td><%- visitante.celular %></td>
-                        <td>Editar</td>
-                        <td>Excluir</td>
+                        <th>Nome</th>
+                        <th>RG</th>
+                        <th>Celular</th>
+                        <th>Ações</th>
                     </tr>
-                <% }); %>
-            </tbody>
-        </table>
-
-        <a href="/">Voltar para Home</a>
+                </thead>
+                <tbody>
+                    <%  visitantes.forEach( visitante => { %>
+                        <tr class="align-middle">
+                            <td><%- visitante.nome %></td>
+                            <td><%- visitante.rg %></td>
+                            <td class="align-middle"><%- visitante.celular %></td>
+                            <td>
+                                <a class="btn btn-warning" href="/visitantes/editar/<%= visitante._id %>">Editar</a>
+                                <a class="btn btn-danger" href="/visitantes/excluir/<%= visitante._id %>">Excluir</a>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+        
+        <a class="btn btn-secondary mx-3" href="/">Voltar para Home</a>
         
         <!-- ========== JS Bootstrap Import Zone ========== -->
         <script src="/javascripts/bootstrap.min.js"></script>

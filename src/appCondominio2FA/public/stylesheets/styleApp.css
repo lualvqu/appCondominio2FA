@@ -8,3 +8,7 @@
     justify-content: center;
     display: flex;
 }
+
+table.vertical-center-items tr td {
+    vertical-align: middle!important;
+}

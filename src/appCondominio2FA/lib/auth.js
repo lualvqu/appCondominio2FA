@@ -22,7 +22,7 @@ passport.use(new LocalStrategy( {
     passwordField: 'password'
 },
 (username, password, done) => {
-    db.findUser(username, (err, user) => {
+    db.findUser({username:username}, (err, user) => {
         
         if (err) { return done(err) }
         

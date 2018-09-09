@@ -17,7 +17,7 @@ module.exports = function () {
         });      
     }
     
-    // =========  Area de Busca de Usuario no Banco de Dados ========= //
+    // =========  Area de Busca no Banco de Dados ========= //
     const findById = function (id, document, callback){
         const ObjectId = require("mongodb").ObjectId;
         global.db.collection(document).findOne({_id: ObjectId(id) }, (err, doc) => {
@@ -25,8 +25,8 @@ module.exports = function () {
         });
     }
 
-    const findUser = function (username, callback){
-        global.db.collection("users").findOne({"username": username}, function(err, doc){
+    const findUser = function (filtro, callback){
+        global.db.collection("users").findOne(filtro, function(err, doc){
             callback(err, doc);
         });
     }
@@ -36,12 +36,26 @@ module.exports = function () {
             callback(err, results);
         });
     } 
+
+    const getInformacoesCondominio = function (filtro, callback){
+        global.db.collection("condominio").findOne(filtro, function(err, doc){
+            callback(err, doc);
+        });
+    }
+
+    // =========  Area de Atualizaçao de documentos no Banco de Dados ========= //
+
+    const updateUser = function (filtro, novosValores){
+        global.db.collection("users").updateOne(filtro, {$set:novosValores})
+    }
     
     return {
         createUser, 
         createVisitante,
         findUser, 
         findById,
-        findVisitantes
+        findVisitantes,
+        updateUser,
+        getInformacoesCondominio
     }
 }();
