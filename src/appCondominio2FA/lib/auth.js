@@ -10,7 +10,7 @@ passport.serializeUser(function(user, done){
 });
 
 passport.deserializeUser(function(id, done){
-    db.findById(id, "users", function(err,user){
+    db.findById("users", id, function(err,user){
         done(err, user);
     });
 });

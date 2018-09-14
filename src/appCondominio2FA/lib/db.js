@@ -1,4 +1,6 @@
 const crypt = require('./utils/crypt');
+const ObjectId = require("mongodb").ObjectId;
+
  
 module.exports = function () { 
     
@@ -18,9 +20,8 @@ module.exports = function () {
     }
     
     // =========  Area de Busca no Banco de Dados ========= //
-    const findById = function (id, document, callback){
-        const ObjectId = require("mongodb").ObjectId;
-        global.db.collection(document).findOne({_id: ObjectId(id) }, (err, doc) => {
+    const findById = function (collection, id, callback){
+        global.db.collection(collection).findOne({_id: ObjectId(id) }, (err, doc) => {
             callback(err, doc);
         });
     }
@@ -48,6 +49,14 @@ module.exports = function () {
     const updateUser = function (filtro, novosValores){
         global.db.collection("users").updateOne(filtro, {$set:novosValores})
     }
+
+    // =========  Area de Exclusao de documentos no Banco de Dados ========= //
+
+    const deleteById = function (collection, id, callback){
+        global.db.collection(collection).remove({_id:ObjectId(id)}, function(err, numberOfRemovedDocs){
+            callback(err, numberOfRemovedDocs);
+        });
+    }
     
     return {
         createUser, 
@@ -56,6 +65,7 @@ module.exports = function () {
         findById,
         findVisitantes,
         updateUser,
-        getInformacoesCondominio
+        getInformacoesCondominio,
+        deleteById
     }
 }();

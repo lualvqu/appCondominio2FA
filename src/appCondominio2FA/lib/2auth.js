@@ -6,7 +6,7 @@ module.exports = function() {
     const KEY_URI_PATTER = "otpauth://totp/Condominio?secret=";
     const DIGITS = 6;
     const PERIOD = 30;
-    const WINDOW = 2;
+    const WINDOW = 1;
     const ENCONDING = 'base32';
 
     const generateSecret = (encode, lengthParam) => {

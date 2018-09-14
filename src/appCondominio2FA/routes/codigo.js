@@ -46,9 +46,7 @@ router.get('/validar', function(req, res, next){
 });
 
 router.post('/autenticar', function(req, res, next){
-    
-    console.log(JSON.stringify(req.body, null, 2));
-    
+        
     let token = req.body.codigo;
 
     let filtro = {
