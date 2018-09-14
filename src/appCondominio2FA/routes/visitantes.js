@@ -42,11 +42,34 @@ router.post('/novo', authenticationMiddleware(), function(req, res, next){
   }
   db.createVisitante(visitante,(err, result) => {
     if (err) res.redirect('/visitante/novo?fail=true');
-    res.redirect('/');
+    res.redirect('/visitantes');
   });
 });
 
 /* Rota de POST exclusao de um Visitante */
+router.get('/excluir/:id', authenticationMiddleware(), function (req, res, next){
+  db.findById('visitantes', req.params.id, (err, doc) => { //TODO: refatorar documento para CONSTANTE STRING
+    if (JSON.stringify(doc.morador_id) === JSON.stringify(req.user._id)){
+      db.deleteById('visitantes', req.params.id, (err, numberOfDocsRemoved) => {
+        if ( !err ) { res.redirect('/visitantes') }
+      })
+    }
+    else{
+      res.render('error', {
+        message:'Erro na exclusao', 
+        error: {
+          status:401, 
+          stack:'Voce nao tem permissao para excluir este usuario' 
+        }
+      });
+    }
+  });
+});
 
+/* Rota de teste */
+router.post('/editar/:id', function (req, res, next){
+  console.log('bateu aqui')
+  console.log(JSON.stringify(req.body, null, 2));
+});
 
 module.exports = router;

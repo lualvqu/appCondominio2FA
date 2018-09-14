@@ -27,21 +27,23 @@
                 <caption>Lista de visitantes</caption>
                 <thead class="thead-dark">
                     <tr>
+                        <th class="text-center">#</th>
                         <th>Nome</th>
                         <th>RG</th>
                         <th>Celular</th>
-                        <th>Ações</th>
+                        <th class="text-center">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <%  visitantes.forEach( visitante => { %>
-                        <tr class="align-middle">
-                            <td><%- visitante.nome %></td>
-                            <td><%- visitante.rg %></td>
-                            <td class="align-middle"><%- visitante.celular %></td>
-                            <td>
-                                <a class="btn btn-warning" href="/visitantes/editar/<%= visitante._id %>">Editar</a>
-                                <a class="btn btn-danger" href="/visitantes/excluir/<%= visitante._id %>">Excluir</a>
+                    <%  visitantes.forEach( (visitante, iterator) => { %>
+                        <tr>
+                            <td class="text-center"><%= iterator + 1 %></td>
+                            <td><%= visitante.nome %></td>
+                            <td><%= visitante.rg %></td>
+                            <td><%= visitante.celular %></td>
+                            <td class="text-center">
+                                <a class="btn btn-warning mx-1" href="/visitantes/editar/<%= visitante._id %>">Editar</a>
+                                <a class="btn btn-danger mx-1" href="/visitantes/excluir/<%= visitante._id %>">Excluir</a>
                             </td>
                         </tr>
                     <% }); %>
