@@ -18,7 +18,7 @@ function authenticationMiddleware () {
 /* Roda de GET para criar um novo visitante */
 router.get('/', authenticationMiddleware(), function(req, res, next){
   db.findVisitantes({morador_id:ObjectId(req.user._id)}, function (err, results){
-    res.render('Visitantes/visitanteIndex', {
+    res.render('visitantes/visitanteIndex', {
       visitantes:results
     });
   })
@@ -26,7 +26,7 @@ router.get('/', authenticationMiddleware(), function(req, res, next){
 
 /* Roda de GET para criar um novo visitante */
 router.get('/novo', authenticationMiddleware(), function(req, res, next){
-  res.render('Visitantes/visitanteCreate', {teste : req.user._id});
+  res.render('visitantes/visitanteCreate', {teste : req.user._id});
 });
 
 /* Rota de POST para criar um novo visitante */
