@@ -1,30 +1,89 @@
-<!doctype html>
-<html>
-  <head>
-      <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
-  </head>
-  <body>
-    <h1>Signup</h1>
-    <form action="/users/signup" method="POST" id="cadastroForm">
-      <label for="username">Username: </label>                  <input name="username" type="text" /><br />
-      <label for="password">Password: </label>                  <input name="password" type="password" /><br />
-      <label for="confirmaPassword">Confirmar Password: </label><input name="confirmaPassword" type="password" /><br />
-      <label for="rg">RG: </label>                              <input name="rg" type="text"> <br />
-      <label for="apartamento">Apartamento: </label>            <input name="apartamento" type="text" /> <br />
-      <label for="bloco">Bloco: </label>                        <!--input name="bloco" type="text" /-->
-      <select name="bloco" form="cadastroForm">
-        <% blocos.forEach(bloco => { %>
-          <option value="<%- bloco %>"> <%- bloco %> </option>
-        <% }); %>
-      </select>
-       <br />
-      <label for="email">E-mail: </label>                       <input name="email" type="text" /><br />
-      <input type="submit" value="Cadastrar" />
-    </form>
-    <% if(message) { %>
-      <p>
-        <label style="color:Red"><%= message %></label>
-      </p>
-    <%}%>
-  </body>
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Cadastrar nova conta </title>
+        
+        <!-- ==========  CSS Bootstrap Import Zone ========== -->
+        <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css">
+        <!-- ========== CSS Personlizado Import Zone ========== -->
+        <link rel="stylesheet" href="/stylesheets/styleApp.css">
+        
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            
+            <% if(message) { %>
+                <div class="alert alert-danger" role="alert">
+                    <%= message %>
+                </div>
+            <%}%>
+            
+            <div class="content rounded border">
+            
+                <h1 class="text-primary text-center">Criar nova conta</h1>
+                
+                <hr/>
+
+                <form id="cadastroForm" method="POST" action="/users/signup">
+                    
+                    <div class="form-group">
+                        <label for="username">Username: </label>
+                        <input name="username" type="text" class="form-control" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password: </label>
+                        <input name="password" type="password" class="form-control" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmaPassword">Confirmar Password: </label>
+                        <input name="confirmaPassword" type="password" class="form-control" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="rg">RG: </label>
+                        <input name="rg" type="text" class="form-control" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bloco">Bloco: </label>
+                        <select name="bloco" form="cadastroForm" class="form-control" />
+                            <option selected>Selecione ...</option>
+                            <% blocos.forEach(bloco => { %>
+                                <option value="<%- bloco %>"> <%- bloco %> </option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="apartamento">Apartamento N&ordm;: </label>
+                        <input name="apartamento" type="text" class="form-control" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail: </label>
+                        <input name="email" type="text" class="form-control" />
+                    </div>
+                    
+                    <!--button type="button" class="btn btn-secondary float-left" onclick="javascript:;">Voltar</button-->
+                    <a href="/visitantes" class="btn btn-secondary float-left">Voltar</a>
+                    <button type="submit" class="btn btn-primary float-right">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- ========== JS Bootstrap Import Zone ========== -->
+        <script src="/javascripts/bootstrap.min.js"></script>
+        <script src="/javascripts/bootstrap.bundle.min.js"></script>
+        <!-- ========== JS JQuery Import Zone ========== -->
+        <script src="/javascripts/jquery-3.3.1.min.js"></script>
+
+    </body>
 </html>

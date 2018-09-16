@@ -39,7 +39,7 @@ router.post('/signup', function(req, res, next){
     isValido: false
   }
 
-  db.findUser(usuario.username, function (err, user){
+  db.findUser({username:usuario.username}, function (err, user){
     
     if(user) { return res.redirect('/users/signup?fail=true&error=usernameError') }
     
