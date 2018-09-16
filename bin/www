@@ -4,7 +4,7 @@
   * Carregando Variaveis de Ambiente
   */
 
-  require('dotenv-safe').load();
+if (process.env.NODE_ENV !== 'production') require('dotenv-safe').load();
 
 /**
   * Conectando no banco de dados
