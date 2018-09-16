@@ -17,8 +17,8 @@
         <h1 class="m-3">Visitantes</h1>
         
         <hr/>
-
-        <a class="btn btn-primary mx-3" href="/visitantes/novo"><b>+</b></a><label>Cadastrar novo visitante</label> <br/>
+        <a class="btn btn-primary mx-3" href="/visitantes/novo"><b>+</b></a><label>Cadastrar novo visitante</label>
+        <br/>
 
         <hr/>
 
@@ -43,7 +43,7 @@
                             <td><%= visitante.celular %></td>
                             <td class="text-center">
                                 <a class="btn btn-warning mx-1" href="/visitantes/editar/<%= visitante._id %>">Editar</a>
-                                <a class="btn btn-danger mx-1" href="/visitantes/excluir/<%= visitante._id %>">Excluir</a>
+                                <button class="btn btn-danger mx-1" onclick="excluir('<%= visitante._id %>')">Excluir</button>
                             </td>
                         </tr>
                     <% }); %>
@@ -53,6 +53,20 @@
         
         <a class="btn btn-secondary mx-3" href="/">Voltar para Home</a>
         
+        <script type="text/javascript">
+            function excluir(id){
+                console.log("chamou a funcao com o parametro \n", id);
+                $.ajax({
+                    url: 'visitantes/remover',
+                    type: "DELETE",
+                    data: {id:id},
+                    success: function (){
+                        window.location.reload();
+                    }
+                });
+            }
+        </script>
+
         <!-- ========== JS Bootstrap Import Zone ========== -->
         <script src="/javascripts/bootstrap.min.js"></script>
         <script src="/javascripts/bootstrap.bundle.min.js"></script>

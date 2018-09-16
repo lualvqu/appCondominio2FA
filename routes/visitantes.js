@@ -24,9 +24,9 @@ router.get('/', authenticationMiddleware(), function(req, res, next){
   })
 });
 
-/* Roda de GET para criar um novo visitante */
+/* Roda de GET para a view de criar um novo visitante */
 router.get('/novo', authenticationMiddleware(), function(req, res, next){
-  res.render('visitantes/visitanteCreate', {teste : req.user._id});
+  res.render('visitantes/visitanteCreate');
 });
 
 /* Rota de POST para criar um novo visitante */
@@ -47,29 +47,42 @@ router.post('/novo', authenticationMiddleware(), function(req, res, next){
 });
 
 /* Rota de POST exclusao de um Visitante */
-router.get('/excluir/:id', authenticationMiddleware(), function (req, res, next){
-  db.findById('visitantes', req.params.id, (err, doc) => { //TODO: refatorar documento para CONSTANTE STRING
-    if (JSON.stringify(doc.morador_id) === JSON.stringify(req.user._id)){
-      db.deleteById('visitantes', req.params.id, (err, numberOfDocsRemoved) => {
-        if ( !err ) { res.redirect('/visitantes') }
-      })
-    }
-    else{
-      res.render('error', {
-        message:'Erro na exclusao', 
-        error: {
-          status:401, 
-          stack:'Voce nao tem permissao para excluir este usuario' 
-        }
-      });
-    }
+router.delete('/remover', authenticationMiddleware(), function (req, res, next){
+  db.findById('visitantes', req.body.id, (err, doc) => { //TODO: refatorar documento para CONSTANTE STRING
+  if (!doc) {
+      return res.render('error', {
+      message:'Erro na exclusão', 
+      error: {
+        status:503, 
+        stack:'Erro Interno não esperado na tentativa de exclusao' 
+      }
+    });}
+
+  if (JSON.stringify(doc.morador_id) === JSON.stringify(req.user._id)){
+    db.deleteById('visitantes', req.body.id, (err, numberOfDocsRemoved) => {
+      if ( !err ) { res.status(204).end() }
+    })
+  }
+  else{
+    res.render('error', {
+      message:'Erro na exclusao', 
+      error: {
+        status:401, 
+        stack:'Voce nao tem permissao para excluir este usuario' 
+      }
+    });
+  }
   });
 });
+
 
 /* Rota de teste */
 router.post('/editar/:id', function (req, res, next){
   console.log('bateu aqui')
   console.log(JSON.stringify(req.body, null, 2));
 });
+
+
+
 
 module.exports = router;
