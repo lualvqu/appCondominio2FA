@@ -27,7 +27,6 @@ router.get('/', authenticationMiddleware(), async function(req, res, next){
 
 router.get('/novoCodigo', authenticationMiddleware(), async function (req, res, next){
     let secret = twoAuth.generateSecret('base32');
-    console.log(secret)
     await db.updateUser({_id:ObjectId(req.user._id)}, {hashSeed:secret});
     res.redirect('/codigo');
 });
@@ -36,7 +35,6 @@ router.get('/validar', function(req, res, next){
     let blocos;
     db.getInformacoesCondominio(null, function (err, informacoes) {
         if (err) {
-            console.log(JSON.stringify(err, null, 2));
             res.redirect('/');
         } else {
           informacoes.blocos ? blocos = informacoes.blocos : blocos = null

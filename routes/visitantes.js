@@ -75,14 +75,10 @@ router.delete('/remover', authenticationMiddleware(), function (req, res, next){
   });
 });
 
-
 /* Rota de teste */
 router.post('/editar/:id', function (req, res, next){
   console.log('bateu aqui')
   console.log(JSON.stringify(req.body, null, 2));
 });
-
-
-
 
 module.exports = router;
