@@ -13,3 +13,9 @@
 table.vertical-center-items tr td {
     vertical-align: middle!important;
 }
+
+#home-cards {
+    max-width: 1280px;
+    margin-right: auto!important;
+    margin-left: auto!important;
+}
