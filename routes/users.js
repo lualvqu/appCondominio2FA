@@ -32,11 +32,14 @@ router.post('/signup', function(req, res, next){
     username: req.body.username, 
     password: req.body.password, 
     email: req.body.email,
+    nome: req.body.nome,
     rg: req.body.rg,
+    dataNascimento: req.body.dataNascimento,
+    telefone: req.body.telefone,
     apartamento: req.body.apartamento,
     bloco: req.body.bloco,
     hashSeed: "",
-    isValido: false
+    isValido: true //True Mockado até implementar o administrador
   }
 
   db.findUser({username:usuario.username}, function (err, user){
@@ -47,6 +50,13 @@ router.post('/signup', function(req, res, next){
       if(err) res.redirect('/users/signup?fail=true');
       res.redirect('/');
     });
+  });
+});
+
+/* Rota de Get para checar se o nome de usuario ja esta em uso */
+router.get('/checkUsername/:username', function (req, res, next){
+  db.findUser({username:req.params.username}, function(err, doc){
+    doc ? res.send(true) : res.send(false);
   });
 });
 
