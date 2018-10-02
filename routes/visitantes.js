@@ -21,12 +21,22 @@ router.get('/', authenticationMiddleware(), function(req, res, next){
     res.render('visitantes/visitanteIndex', {
       visitantes:results
     });
-  })
+  });
 });
 
 /* Roda de GET para a view de criar um novo visitante */
 router.get('/novo', authenticationMiddleware(), function(req, res, next){
   res.render('visitantes/visitanteCreate');
+});
+
+/* Roda de GET para a view de criar um novo visitante */
+router.get('/visitante/informacoes', authenticationMiddleware(), function(req, res, next){
+  db.findById('visitantes', req.query.id, function(err, visitante){
+    if (!err && db.compararIds(visitante.morador_id, req.user._id)){
+      console.log(visitante)
+      res.send(visitante);
+    } 
+  });
 });
 
 /* Rota de POST para criar um novo visitante */

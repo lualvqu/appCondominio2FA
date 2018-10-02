@@ -1,3 +1,7 @@
+body {
+    min-height: 100%;
+}
+
 .content {
     margin: 20px;
     padding: 30px 20px;
@@ -18,4 +22,17 @@ table.vertical-center-items tr td {
     max-width: 1280px;
     margin-right: auto!important;
     margin-left: auto!important;
+}
+
+.wallpaper-condominio {
+    background-image: url("/images/wallpaper.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #000;
+}
+
+.white-title {
+    font-weight: bold;
+    color: white;
 }
