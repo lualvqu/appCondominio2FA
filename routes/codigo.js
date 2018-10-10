@@ -37,30 +37,40 @@ router.get('/validar', function(req, res, next){
         if (err) {
             res.redirect('/');
         } else {
-          informacoes.blocos ? blocos = informacoes.blocos : blocos = null
+          informacoes.blocos ? blocos = informacoes.blocos : blocos = []
         }
         res.render('codigo/codigoValidar', {blocos:blocos})
     });
 });
 
-router.post('/autenticar', function(req, res, next){
+router.post('/autenticar/:tipo', function(req, res, next){
+
+    if (req.params.tipo == "morador") {
         
-    let token = req.body.codigo;
+        let token = req.body.codigo;
 
-    let filtro = {
-        bloco : req.body.bloco,
-        apartamento: req.body.apartamento,
-        isValido: true
-    };
+        let filtro = {
+            bloco : req.body.bloco,
+            apartamento: req.body.apartamento,
+            isValido: false
+        };
 
-    db.findUser(filtro, function (err, user){
-        if(user){
-            res.send(twoAuth.validarCodigo(user.hashSeed, token));
-        }
-        else{
-            res.send("usuario invalido");
-        }
-    });
+        db.findUser(filtro, function (err, user){
+            if(user){
+                res.send(twoAuth.validarCodigoMorador(user.hashSeed, token));
+            }
+            else{
+                res.send("usuario invalido");
+            }
+        });
+
+    } else if (req.params.tipo == "visitante") {
+        
+                
+
+    } else {
+        res.status(404).end()
+    }
 });
 
 module.exports = router;

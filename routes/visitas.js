@@ -14,12 +14,11 @@ function authenticationMiddleware () {
 }
 
 router.get('/', authenticationMiddleware(), function(req, res, next) {
-    let results = []; //temp
-    //db.findVisitas({morador_id:ObjectId(req.user._id)}, function (err, results){
+    db.findVisitas({morador_id:ObjectId(req.user._id)}, function (err, results){
         res.render('visitas/visitaIndex', {
             visitas:results
         });
-    //})
+    });
 });
 
 router.get('/agendar', authenticationMiddleware(), function (req, res, next) {
@@ -33,11 +32,10 @@ router.get('/agendar', authenticationMiddleware(), function (req, res, next) {
 router.post('/agendar', authenticationMiddleware(), function(req, res, next) {
     let visita = {
         data: req.body.data,
-        //hora: req.body.hora,
-        codigo: req.body.codigo,
+        codigo: "000000",
         entradas: [],
         morador_id: ObjectId(req.user._id),
-        vistante_id: ObjectId(req.body.visitante),
+        visitante_id: ObjectId(req.body.visitante),
         isValido: true
     }
     db.createVisita(visita, (err, result) => {
@@ -46,8 +44,9 @@ router.post('/agendar', authenticationMiddleware(), function(req, res, next) {
     });
 });
 
-router.delete('/cancelar', authenticationMiddleware(), function(req, res, next) {
-
+router.delete('/cancelar', authenticationMiddleware(), async function(req, res, next) {
+    await db.updateById("visitas", req.body.id, {isValido:false});
+    res.status(204).end();
 });
 
 module.exports = router;
