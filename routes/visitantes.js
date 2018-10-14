@@ -4,13 +4,14 @@ const db = require('../lib/db');
 const ObjectId = require("mongodb").ObjectId;
 
 
+
 function authenticationMiddleware () {  
   return function (req, res, next) {
     if (req.isAuthenticated()) {
-      return next()
+      return next();
     }
     res.redirect('/login');
-  }
+  };
 }
 
 /* ============ ROTAS VISITANTE ================ */
@@ -33,7 +34,6 @@ router.get('/novo', authenticationMiddleware(), function(req, res, next){
 router.get('/visitante/informacoes', authenticationMiddleware(), function(req, res, next){
   db.findById('visitantes', req.query.id, function(err, visitante){
     if (!err && db.compararIds(visitante.morador_id, req.user._id)){
-      console.log(visitante)
       res.send(visitante);
     } 
   });
@@ -49,7 +49,7 @@ router.post('/novo', authenticationMiddleware(), function(req, res, next){
     celular:req.body.celular,
     email:req.body.email,
     morador_id: ObjectId(req.user._id)
-  }
+  };
   db.createVisitante(visitante,(err, result) => {
     if (err) res.redirect('/visitante/novo?fail=true');
     res.redirect('/visitantes');
@@ -70,8 +70,8 @@ router.delete('/remover', authenticationMiddleware(), function (req, res, next){
 
   if (JSON.stringify(doc.morador_id) === JSON.stringify(req.user._id)){
     db.deleteById('visitantes', req.body.id, (err, numberOfDocsRemoved) => {
-      if ( !err ) { res.status(204).end() }
-    })
+      if ( !err ) { res.status(204).end(); }
+    });
   }
   else{
     res.render('error', {
@@ -86,9 +86,9 @@ router.delete('/remover', authenticationMiddleware(), function (req, res, next){
 });
 
 /* Rota de teste */
-router.post('/editar/:id', function (req, res, next){
-  console.log('bateu aqui')
-  console.log(JSON.stringify(req.body, null, 2));
+router.post('/editar/:id', async function (req, res, next){
+  await db.updateById('visitantes', req.params.id, req.body);
+  res.status(204).end();
 });
 
 module.exports = router;

@@ -94,7 +94,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button id="btn-salvar" type="button" class="btn btn-primary">Salvar alterações</button>
+                        <button id="btn-salvar" type="button" class="btn btn-primary" onclick="submitForm()">Salvar alterações</button>
                     </div>
                 </div>
             </div>
@@ -137,6 +137,10 @@
                         $('#editar-visitante-modal').modal();
                     }
                 });
+            }
+
+            function submitForm() {
+                $('#editar-visitante-form').submit();
             }
         </script>
 
