@@ -6,12 +6,13 @@ const logger = require('morgan');
 
 //Imports para autenticacao
 const passport = require('passport');
-const session = require ('express-session');
+const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const visitantesRouter = require('./routes/visitantes');
+const visitasRouter = require('./routes/visitas');
 const codigoRouter = require('./routes/codigo');
 
 
@@ -24,21 +25,23 @@ app.set('view engine', 'ejs');
 
 // Configurando Autenticacao
 require('./lib/auth')(passport);
-app.use(session({  
+app.use(session({
   store: new MongoStore({
     db: global.db,
     ttl: 30 * 60 // = 30 minutos de sessão
-}),
-  secret: '0000000000',//configure um segredo seu aqui
+  }),
+  secret: '0000000000', //configure um segredo seu aqui
   resave: false,
   saveUninitialized: false
-}))
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -46,15 +49,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/visitantes', visitantesRouter);
+app.use('/visitas', visitasRouter);
 app.use('/codigo', codigoRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

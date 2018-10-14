@@ -16,32 +16,74 @@
 
         <h1 class="m-3">Validar código de acesso</h1>
         <hr/>
-        <div class="m-3">
-            <form method="POST" action="/codigo/autenticar" id="autenticarForm">
-                <label for="bloco">Bloco: </label>
-                <select name="bloco" form="autenticarForm">
-                    <% blocos.forEach(bloco => { %>
-                        <option value="<%- bloco %>"> <%- bloco %> </option>
-                    <% }); %>
-                </select>
-                <br />
-                <label for="apartamento">Apartamento: </label>
-                <input type="number" name="apartamento"/>
-                <br />
-                <label for="codigo">codigo: </label>
-                <input type="number" name="codigo"/>
-                <br />
-                <button class="btn btn-primary" type="submit">Prosseguir</button>
-            </form>
+
+        <div id="container-entrada-selector" class="mx-3">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <button id="btn-morador" class="btn btn-outline-primary">
+                    Morador
+                </button>
+                <button id="btn-visitante" class="btn btn-outline-primary">
+                    Visitante
+                </button>
+            </div>
+
+
+            <!--a id="btn-morador"   href="#" class="btn btn-outline-primary" onclick="alterarFormCodigo('morador')">Morador</a>
+            <a id="btn-visitante" href="#" class="btn btn-outline-primary" onclick="alterarFormCodigo('visitante')">Visitante</a-->
+
         </div>
 
-
-
+        
+        <div id="container-entrada-codigo" style="display:none;">
+            <div class="m-3">
+                <form method="POST" action="/codigo/autenticar" id="autenticarForm">
+                    <label for="bloco">Bloco: </label>
+                    <select name="bloco" form="autenticarForm">
+                        <% blocos.forEach(bloco => { %>
+                            <option value="<%- bloco %>"> <%- bloco %> </option>
+                        <% }); %>
+                    </select>
+                    <br />
+                    <label for="apartamento">Apartamento: </label>
+                    <input type="number" name="apartamento"/>
+                    <br />
+                    <label for="codigo">Código: </label>
+                    <input type="number" name="codigo"/>
+                    <br />
+                    <button class="btn btn-primary" type="submit">Prosseguir</button>
+                </form>
+            </div>
+        </div>
 
         <!-- ========== JS Bootstrap Import Zone ========== -->
         <script src="/javascripts/bootstrap.min.js"></script>
         <script src="/javascripts/bootstrap.bundle.min.js"></script>
         <!-- ========== JS JQuery Import Zone ========== -->
         <script src="/javascripts/jquery-3.3.1.min.js"></script>
+
+        <script>
+            $(function (){
+                $('#btn-morador').click(function (){                    
+                    $('#btn-morador').addClass('active');
+                    $('#btn-visitante').removeClass('active');
+                    $('#autenticarForm').attr('action', '/codigo/autenticar/morador')
+                    exibirCodigo()
+                });
+                $('#btn-visitante').click(function (){
+                    $('#btn-visitante').addClass('active');
+                    $('#btn-morador').removeClass('active');
+                    $('#autenticarForm').attr('action', '/codigo/autenticar/visitante')
+                    exibirCodigo()
+                });
+            });
+
+            function exibirCodigo(){
+                if ($('#container-entrada-codigo').is(':hidden')){
+                    $('#container-entrada-codigo').show('fast');
+                }
+            }
+
+        </script>
+
     </body>
 </html>

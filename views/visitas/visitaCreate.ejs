@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Cadastrar novo visitante </title>
+        
+        <!-- ==========  CSS Bootstrap Import Zone ========== -->
+        <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css">
+        <!-- ========== CSS Personlizado Import Zone ========== -->
+        <link rel="stylesheet" href="/stylesheets/styleApp.css">
+        
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            
+            <div class="content rounded border">
+            
+                <h1 class="text-primary text-center">Agendar Visita</h1>
+                
+                <hr/>
+
+                <form id="agendamento-form" method="POST" action="/visitas/agendar">
+                    <div class="form-group">
+                        <label for="visitante">Visitante: </label>
+                        <select name="visitante" form="agendamento-form" class="form-control">
+                            <option selected>Selecione ...</option>
+                            <% visitantes.forEach(visitante => { %>
+                                <option value="<%- visitante._id %>"> <%- visitante.nome %> </option>
+                            <% }); %>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="data">Data:</label>
+                        <input name="data" type="date" class="form-control" />
+                    </div>                    
+
+                    <!--button type="button" class="btn btn-secondary float-left" onclick="javascript:;">Voltar</button-->
+                    <a href="/visitas" class="btn btn-secondary float-left">Voltar</a>
+                    <button type="submit" class="btn btn-primary float-right">Cadastrar</button>
+                </form>       
+            
+            </div>
+        </div>
+        
+        <!-- ========== JS Bootstrap Import Zone ========== -->
+        <script src="/javascripts/bootstrap.min.js"></script>
+        <script src="/javascripts/bootstrap.bundle.min.js"></script>
+        <!-- ========== JS JQuery Import Zone ========== -->
+        <script src="/javascripts/jquery-3.3.1.min.js"></script>
+
+    </body>
+</html>
