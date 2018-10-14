@@ -5,32 +5,35 @@ const db = require('../lib/db');
 /* ===============  ROTAS USUARIO ============== */
 
 /* Retorna a View de cadastro de Usuario para Login */
-router.get('/signup', function(req, res, next) {
+router.get('/signup', function (req, res, next) {
   let message;
   let blocos;
   db.getInformacoesCondominio(null, function (err, informacoes) {
     if (err) {
-      
+
       console.log(JSON.stringify(err, null, 2));
       res.redirect('/');
-    
+
     } else {
 
-      informacoes.blocos ? blocos = informacoes.blocos : blocos = null
-      
-      req.query.fail ? message = 'Falha no cadastro do usuário!' : message = null
-      
-      res.render('signup', { message: message, blocos: blocos });
+      informacoes.blocos ? blocos = informacoes.blocos : blocos = null;
+
+      req.query.fail ? message = 'Falha no cadastro do usuário!' : message = null;
+
+      res.render('signup', {
+        message: message,
+        blocos: blocos
+      });
 
     }
   });
 });
- 
-/* Rota de POST para criar um novo usuario */ 
-router.post('/signup', function(req, res, next){
+
+/* Rota de POST para criar um novo usuario */
+router.post('/signup', function (req, res, next) {
   let usuario = {
-    username: req.body.username, 
-    password: req.body.password, 
+    username: req.body.username,
+    password: req.body.password,
     email: req.body.email,
     nome: req.body.nome,
     rg: req.body.rg,
@@ -40,22 +43,28 @@ router.post('/signup', function(req, res, next){
     bloco: req.body.bloco,
     hashSeed: "",
     isValido: true //True Mockado até implementar o administrador
-  }
+  };
 
-  db.findUser({username:usuario.username}, function (err, user){
-    
-    if(user) { return res.redirect('/users/signup?fail=true&error=usernameError') }
-    
+  db.findUser({
+    username: usuario.username
+  }, function (err, user) {
+
+    if (user) {
+      return res.redirect('/users/signup?fail=true&error=usernameError');
+    }
+
     db.createUser(usuario, (err, result) => {
-      if(err) res.redirect('/users/signup?fail=true');
+      if (err) res.redirect('/users/signup?fail=true');
       res.redirect('/');
     });
   });
 });
 
 /* Rota de Get para checar se o nome de usuario ja esta em uso */
-router.get('/checkUsername/:username', function (req, res, next){
-  db.findUser({username:req.params.username}, function(err, doc){
+router.get('/checkUsername/:username', function (req, res, next) {
+  db.findUser({
+    username: req.params.username
+  }, function (err, doc) {
     doc ? res.send(true) : res.send(false);
   });
 });
