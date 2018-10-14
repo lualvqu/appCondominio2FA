@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const dateUtils = require('../lib/utils/dateUtils');
 const db = require('../lib/db');
 const twoAuth = require ('../lib/2auth');
 const ObjectId = require("mongodb").ObjectId;
@@ -45,17 +46,17 @@ router.get('/validar', function(req, res, next){
 
 router.post('/autenticar/:tipo', function(req, res, next){
 
+    let token = req.body.codigo;
+
+    let filtroUser = {
+        bloco : req.body.bloco,
+        apartamento: req.body.apartamento,
+        isValido: false
+    };
+
     if (req.params.tipo == "morador") {
-        
-        let token = req.body.codigo;
 
-        let filtro = {
-            bloco : req.body.bloco,
-            apartamento: req.body.apartamento,
-            isValido: false
-        };
-
-        db.findUser(filtro, function (err, user){
+        db.findUser(filtroUser, function (err, user){
             if(user){
                 res.send(twoAuth.validarCodigoMorador(user.hashSeed, token));
             }
@@ -65,11 +66,28 @@ router.post('/autenticar/:tipo', function(req, res, next){
         });
 
     } else if (req.params.tipo == "visitante") {
-        
-                
+        let today = dateUtils.getStringDate();
+        db.findUser(filtroUser, function (err, user){
+            let filtroVisita = {
+                morador_id:ObjectId(user._id), 
+                codigo:token, 
+                data:today,
+                isValido:true
+            };
+
+            db.findVisitas(filtroVisita, async function (err, results){ 
+                if (results.length == 1 ){
+                    let entradas = results[0].entradas;
+                    entradas.push({hora:dateUtils.getStringHora()});
+                    await db.updateById("visitas", results[0]._id, {entradas:entradas});
+                    res.send(true);
+                }else
+                    res.send(false);
+            });
+        });
 
     } else {
-        res.status(404).end()
+        res.status(404).end();
     }
 });
 
