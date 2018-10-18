@@ -29,6 +29,7 @@
                     <tr>
                         <th class="text-center">#</th>
                         <th>Data</th>
+                        <th>Hora</th>
                         <th>Visitante</th>
                         <th>Código</th>
                         <th>Status</th>
@@ -40,6 +41,7 @@
                         <tr>
                             <td class="text-center"><%= iterator + 1 %></td>
                             <td><%= visita.data %></td>
+                            <td><%= visita.hora %></td>
                             <td><%= visita.visitante.nome %></td>
                             <td><%= visita.codigo %></td>
                             <% if (visita.isValido) { %>

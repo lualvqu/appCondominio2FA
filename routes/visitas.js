@@ -71,6 +71,7 @@ router.post('/agendar', authenticationMiddleware(), function (req, res, next) {
 
     let visita = {
       data: req.body.data,
+      hora: req.body.hora + ":00",
       codigo: token,
       entradas: [],
       morador_id: ObjectId(req.user._id),
