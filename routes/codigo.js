@@ -59,7 +59,7 @@ router.post('/autenticar/:tipo', function (req, res, next) {
   let filtroUser = {
     bloco: req.body.bloco,
     apartamento: req.body.apartamento,
-    isValido: false
+    isValido: true
   };
 
   if (req.params.tipo == "morador") {
