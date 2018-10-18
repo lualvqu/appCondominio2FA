@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const teste = require('./../lib/utils/dateUtils');
+const mail = require('./../lib/mail');
+
 
 // Definindo Middleware de autenticacao
 function authenticationMiddleware() {
@@ -47,6 +49,7 @@ router.post('/login',
 router.get('/teste', function (req, res, next) {
   console.log('bateu aqui');
   console.log(teste.getStringHora());
+  mail.enviarEmail();
   //console.log(JSON.stringify(req.body, null, 2));
   res.end();
 });

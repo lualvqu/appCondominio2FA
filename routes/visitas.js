@@ -2,6 +2,7 @@ const express = require('express');
 const randomstring = require("randomstring");
 const router = express.Router();
 const db = require('../lib/db');
+const mail = require('../lib/mail');
 const ObjectId = require("mongodb").ObjectId;
 
 function authenticationMiddleware() {
@@ -78,6 +79,7 @@ router.post('/agendar', authenticationMiddleware(), function (req, res, next) {
     };
     db.createVisita(visita, (err, result) => {
       if (err) res.redirect('/visitas/novo?fail=true');
+      mail.enviarEmail(visita);
       res.redirect('/visitas');
     });
 
