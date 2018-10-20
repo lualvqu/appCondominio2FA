@@ -27,6 +27,8 @@
 html,
 body {
     height: 100%;
+    width: 100%;
+    font-family: Poppins-Medium;
 }
 
 /*//////////////////////////////////////////////////////////////////
@@ -92,7 +94,7 @@ body {
 }
 
 #login-box {
-    margin-top: -200px;
+    width: 400px;
 }
 
 #login-box form div input, #login-box form div button{
@@ -114,4 +116,42 @@ body {
 
 #login-box form div a {
     text-decoration: none;
+}
+
+#form-box{
+    background-color: #fff;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1000px;
+
+}
+
+/* ----------------------------------------------
+[INPUT WITH ICON USING BOOTSTRAP] */
+div.input-icon {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: .375rem .75rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    text-align: center;
+    white-space: nowrap;
+    border: 1px solid #ced4da;
+    border-right: unset;
+    border-radius: .25rem;
+    border-right: unset;
+}
+
+input.input-icon, select.input-icon{
+    border-left: unset;
+    padding-left: unset;
+}
+
+.img-size-100{
+    width: 100%;
+    height: 100%;
 }
