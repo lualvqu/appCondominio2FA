@@ -1,79 +1,59 @@
-<%- include('./partials/head.ejs'); -%>
+<%- include('../partials/head.ejs'); -%>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="content p-5">
+                <div id="menu">
+                    <div class="row">
 
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>        
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Home </title>
-        
-        <!-- ==========  CSS Bootstrap Import Zone ========== -->
-        <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
-        <link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css">
-        <!-- ========== CSS Personlizado Import Zone ========== -->
-        <link rel="stylesheet" href="/stylesheets/styleApp.css">  
-    </head>
-    <body class="wallpaper-condominio">
-        <!-- Content Here -->
+                        <div class="col-md-4">
+                            <div class="m-2 border rounded">
+                                <div class="img-menu w-100 h-100 p-5">
+                                    <!-- IMG HERE -->
+                                </div>
+                                <div class="p-5">
+                                    <h5 class=""><b>Visitantes</b></h5>
+                                    <p class="card-text">Cadastre e administre seus visitantes ja cadastrados
+                                        no sistema para poder agendar futuras visitas.</p>
+                                    <a class="btn btn-primary align-bottom" href="/visitantes">Visitantes</a>
+                                </div>
+                            </div>
+                        </div>
 
-        <h1 class="m-3 white-title">Home</h1>
 
-        <div id="home-cards" class="card-deck m-5" style="display:none">
+                        <div class="col-md-4">
+                            <div class="m-2 border rounded">
+                                <div class="img-menu w-100 h-100 p-5">
+                                    <!-- IMG HERE -->
+                                </div>
+                                <div class="p-5">
+                                    <h5 class=""><b>Agendar Visitas</b></h5>
+                                    <p class="card-text">Agende uma visitas para um visitante previamente cadastrado no 
+                                            sistema para facilidar a entrada no condominio.</p>
+                                    <a class="btn btn-primary align-bottom" href="/visitas">Agendar Visita</a>
+                                </div>
+                            </div>
+                        </div>
 
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/visitantCard.png" alt="Area de visitantes">
-                <div class="card-body">
-                    <h5 class="card-title">Visitantes</h5>
-                    <p class="card-text">Cadastre e administre seus visitantes ja cadastrados
-                     no sistema para poder agendar futuras visitas.</p>
-                </div>
-                <div class="p-3">
-                    <a class="btn btn-primary align-bottom" href="/visitantes">Visitantes</a>
-                </div>
-            </div>
+                        <div class="col-md-4">
+                            <div class="m-2 border rounded">
+                                <div class="img-menu w-100 h-100 p-5">
+                                    <!-- IMG HERE -->
+                                </div>
+                                <div class="p-5">
+                                    <h5 class=""><b>Código de Acesso</b></h5>
+                                    <p class="card-text">Cadastre ou atualize seu codigo de autenticacao do 2 Auth a
+                                            partir de um QR code usando seu app de preferencia.</p>
+                                    <a class="btn btn-primary align-bottom" href="/visitantes">Código de acesso</a>
+                                </div>
+                            </div>
+                        </div>
 
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/schedulerCard.png" alt="Cadastro de visitas">
-                <div class="card-body">
-                    <h5 class="card-title">Agendar Visitas</h5>
-                    <p class="card-text">Agende uma visitas para um visitante previamente cadastrado no 
-                    sistema para facilidar a entrada no condominio.</p>
-                </div>
-                <div class="p-3">
-                    <a class="btn btn-primary" href="/visitas">Agendar Visita</a>
-                </div>
-            </div>
-
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/codeCard.png" alt="Código de Acesso">
-                <div class="card-body">
-                    <h5 class="card-title">Código de Acesso</h5>
-                    <p class="card-text">Cadastre ou atualize seu codigo de autenticacao do 2 Auth a
-                    partir de um QR code usando seu app de preferencia.</p>
-                </div>
-                <div class="p-3">
-                    <a class="btn btn-primary" href="/codigo">Código de acesso</a>
+                    </div>
                 </div>
             </div>
-
         </div>
+    </div>
 
-        <!-- ========== JS JQuery Import Zone ========== -->
-        <script src="/javascripts/jquery-3.3.1.min.js"></script>
-
-        <script type="text/javascript">
-            
-            $( document ).ready(function() {
-                $('#home-cards').show("fast");
-            });
-
-        </script>
-        
-        <!-- ========== JS Bootstrap Import Zone ========== -->
-        <script src="/javascripts/bootstrap.min.js"></script>
-        <script src="/javascripts/bootstrap.bundle.min.js"></script>
-        
-    </body>
-</html>
-
-<%- include('./partials/footer.ejs'); -%>
+</div>
+<%- include('../partials/footer.ejs'); -%>
