@@ -1,38 +1,174 @@
+/*//////////////////////////////////////////////////////////////////
+[ FONT ]*/
+
+@font-face {
+    font-family: Poppins-Regular;
+    src: url('/fonts/poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Medium;
+    src: url('/fonts/poppins/Poppins-Medium.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Bold;
+    src: url('/fonts/poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: Poppins-SemiBold;
+    src: url('/fonts/poppins/Poppins-SemiBold.ttf');
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ RESTYLE TAG ]*/
+
+html,
 body {
-    min-height: 100%;
+    height: 100%;
+    width: 100%;
+    font-family: Poppins-Medium;
 }
 
-.content {
-    margin: 20px;
-    padding: 30px 20px;
-    /*max-width: 800px; */
-    min-width: 500px;
-}
+/*//////////////////////////////////////////////////////////////////
+[ INPUT ICONS CSS ]*/
 
-.container{
-    justify-content: center;
-    display: flex;
-}
+.add-on .input-group-btn > .btn {
+    border-left-width:0;left:-2px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  }
+  /* stop the glowing blue shadow */
+  .add-on .form-control:focus {
+   box-shadow:none;
+   -webkit-box-shadow:none; 
+   border-color:#cccccc; 
+  }
+  
+  /* enable absolute positioning */
+  .inner-addon {
+    position: relative;
+  }
+  
+  /* style glyph */
+  .inner-addon .fa {
+    position: absolute;
+    padding: 17px;
+    pointer-events: none;
+    color: #495057;
+  }
+  
+  /* align glyph */
+  .left-addon .fa  { left:  0px;}
+  .right-addon .fa { right: 0px;}
+  
+  /* add padding  */
+  .left-addon input  { padding-left:  40px; }
+  .right-addon input { padding-right: 40px; }
+  
+  /* align button at bottom */
+  .vertical-align-bottom { vertical-align: bottom !important; }
 
-table.vertical-center-items tr td {
-    vertical-align: middle!important;
-}
+/*---------------------------------------------*/
 
-#home-cards {
-    max-width: 1280px;
-    margin-right: auto!important;
-    margin-left: auto!important;
-}
-
-.wallpaper-condominio {
-    background-image: url("/images/wallpaper.jpg");
-    background-size: cover;
-    background-position: center;
+#background-container {
     background-repeat: no-repeat;
-    background-color: #000;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+    font-family: Poppins-Medium;
 }
 
-.white-title {
-    font-weight: bold;
-    color: white;
+#background-container::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: #005bea;
+    background: -webkit-linear-gradient(bottom, #005bea, #00c6fb);
+    opacity: 0.7;
+}
+
+#login-box {
+    width: 400px;
+}
+
+#login-box form div input, #login-box form div button{
+    border-radius: 25px;
+    line-height: 1.2;
+    height: 50px;
+    border:none;
+}
+
+#login-box form div button{
+  background-color: #333333;
+}
+
+#login-box form div button:hover{
+    background: #56CCF2;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2F80ED, #56CCF2);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2F80ED, #56CCF2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#login-box form div a {
+    text-decoration: none;
+}
+
+#form-box{
+    background-color: #fff;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1000px;
+
+}
+
+/* ----------------------------------------------
+[INPUT WITH ICON USING BOOTSTRAP] */
+div.input-icon {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: .375rem .75rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    text-align: center;
+    white-space: nowrap;
+    border: 1px solid #ced4da;
+    border-right: unset;
+    border-radius: .25rem;
+    border-right: unset;
+}
+
+input.input-icon, select.input-icon{
+    border-left: unset;
+    padding-left: unset;
+}
+
+.img-size-100{
+    width: 100%;
+    height: 100%;
+}
+
+/* ------------------------------------------
+[MENU CARDS CUSTOM] */
+
+.svg-white path, .svg-white circle {
+     fill: white;
+}
+
+.img-menu{
+    background: #56CCF2;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2F80ED, #56CCF2);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2F80ED, #56CCF2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.card-text{
+    font-size: 1.4rem;
 }

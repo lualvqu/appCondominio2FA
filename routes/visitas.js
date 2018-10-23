@@ -1,8 +1,9 @@
 const express = require('express');
+const randomstring = require("randomstring");
 const router = express.Router();
 const db = require('../lib/db');
+const mail = require('../lib/mail');
 const ObjectId = require("mongodb").ObjectId;
-
 
 function authenticationMiddleware() {
   return function (req, res, next) {
@@ -12,6 +13,24 @@ function authenticationMiddleware() {
     res.redirect('/login');
   };
 }
+
+const verificarTokenDuplicado = function (visitas, token) {
+  let retorno = false;
+  for (let i = 0; i < visitas.length ; i++){
+    if ( visitas[i].codigo == token) {
+      retorno = true;
+      break;
+    }
+  }
+  return retorno;
+};
+
+const gerarRandomToken = function (size) {
+  return randomstring.generate({
+    length: size,
+    charset: 'numeric'
+  });
+};
 
 router.get('/', authenticationMiddleware(), function (req, res, next) {
   db.findVisitas({
@@ -34,17 +53,37 @@ router.get('/agendar', authenticationMiddleware(), function (req, res, next) {
 });
 
 router.post('/agendar', authenticationMiddleware(), function (req, res, next) {
-  let visita = {
-    data: req.body.data,
-    codigo: "000000",
-    entradas: [],
-    morador_id: ObjectId(req.user._id),
-    visitante_id: ObjectId(req.body.visitante),
-    isValido: true
+
+  let filtroVisita = {
+    morador_id: req.user._id,
+    data: req.body.data
   };
-  db.createVisita(visita, (err, result) => {
-    if (err) res.redirect('/visitas/novo?fail=true');
-    res.redirect('/visitas');
+
+  db.findVisitas(filtroVisita, function (err, results) {
+    
+    let token = gerarRandomToken(6);
+    
+    if (results.length > 0) {
+      while(verificarTokenDuplicado(results, token)){
+        token = gerarRandomToken(6);
+      }   
+    }
+
+    let visita = {
+      data: req.body.data,
+      hora: req.body.hora + ":00",
+      codigo: token,
+      entradas: [],
+      morador_id: ObjectId(req.user._id),
+      visitante_id: ObjectId(req.body.visitante),
+      isValido: true
+    };
+    db.createVisita(visita, (err, result) => {
+      if (err) res.redirect('/visitas/novo?fail=true');
+      mail.enviarEmail(visita);
+      res.redirect('/visitas');
+    });
+
   });
 });
 

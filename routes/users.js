@@ -50,12 +50,12 @@ router.post('/signup', function (req, res, next) {
   }, function (err, user) {
 
     if (user) {
-      return res.redirect('/users/signup?fail=true&error=usernameError');
+      return res.status(500).send({"status": "500", "stack" : "Username já esta em uso."});
     }
 
     db.createUser(usuario, (err, result) => {
-      if (err) res.redirect('/users/signup?fail=true');
-      res.redirect('/');
+      if (err) res.status(500).send({"status": "500", "stack" : "Erro ao inserir usuario no banco"});
+      res.status(200).send('Usuário cadastrado com sucesso!');
     });
   });
 });

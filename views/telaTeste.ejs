@@ -1,14 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Tela de Teste</title>
-    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
-</head>
-<body>
-    <h1> Itens a baixo: </h1>
-    <%  lista.forEach( item => { %>
-        <div> <%- item.username %> </div>
-    <% }); %>
+<div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="/images/visitantCard.png" alt="Area de visitantes">
+        <div class="card-body">
+            <h5 class="card-title">Visitantes</h5>
+            <p class="card-text">Cadastre e administre seus visitantes ja cadastrados
+             no sistema para poder agendar futuras visitas.</p>
+        </div>
+        <div class="p-3">
+            <a class="btn btn-primary align-bottom" href="/visitantes">Visitantes</a>
+        </div>
+    </div>
 
-</body>
-</html>
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="/images/schedulerCard.png" alt="Cadastro de visitas">
+        <div class="card-body">
+            <h5 class="card-title">Agendar Visitas</h5>
+            <p class="card-text">Agende uma visitas para um visitante previamente cadastrado no 
+            sistema para facilidar a entrada no condominio.</p>
+        </div>
+        <div class="p-3">
+            <a class="btn btn-primary" href="/visitas">Agendar Visita</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="/images/codeCard.png" alt="Código de Acesso">
+        <div class="card-body">
+            <h5 class="card-title">Código de Acesso</h5>
+            <p class="card-text">Cadastre ou atualize seu codigo de autenticacao do 2 Auth a
+            partir de um QR code usando seu app de preferencia.</p>
+        </div>
+        <div class="p-3">
+            <a class="btn btn-primary" href="/codigo">Código de acesso</a>
+        </div>
+    </div>

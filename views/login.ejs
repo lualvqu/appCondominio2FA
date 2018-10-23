@@ -1,33 +1,68 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
+
 <head>
-      <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Login </title>
+
+    <!-- ==========  CSS Bootstrap Import Zone ========== -->
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css">
+    <!-- ========== CSS FontAwesome Import Zone ========== -->
+    <link rel="stylesheet" href="/stylesheets/fontawesome.min.css">
+    <!-- ========== CSS Personlizado Import Zone ========== -->
+    <link rel="stylesheet" href="/stylesheets/styleApp.css">
+
 </head>
+
 <body>
-    <h1 class="m-3">Login</h1>
-    <hr/>
-    <div class="m-3">
-        <form action="/login" method="POST">
-            <label for="username">Login: </label>
-            <input name="username" type="text" />
-            <br />
-            <label for="password">Senha: </label>
-            <input name="password" type="password" />
-            <br />
-            <button class="btn btn-primary" type="submit">Login</button>
-        </form>
-        <% if(message) { %>
-            <p>
-                <label style="color:Red">
-                    <%= message %>
-                </label>
-            </p>
-        <%}%>
-        <p>
-            <!--a href="/users/forgot">Esqueceu sua senha?</a--> 
-            <a href="/users/signup">Não possui cadastro?</a>
-        </p>
+
+    <div id="background-container" class="container-fluid h-100 d-flex align-items-center justify-content-center" style="background-image: url('/images/wallpaper.jpg');">
+        
+        <div id="login-box" >
+            <form action="/login" method="POST" class="m-5">
+
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <img src="/images/logo.png">
+                    </div>
+                </div>
+
+                <div class="mt-5">
+
+                    <div class="form-group inner-addon left-addon">
+                        <i class="fa fa-user"></i>
+                        <input type="text" class="form-control" name="username" placeholder="Username" required/>
+                    </div>
+
+                    <div class="form-group inner-addon left-addon">
+                        <i class="fa fa-lock"></i>
+                        <input type="password" class="form-control" name="password" placeholder="Password" required/>
+                    </div>
+
+                    <div>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <a class="text-light" href="/users/signup">Cadastre-se <i class="ml-1 fa fa-sign-in-alt"></i></a>
+                    <div>
+                </div>
+            </form>
+        </div>
     </div>
+
+    <!-- ========== JS Bootstrap Import Zone ========== -->
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/bootstrap.bundle.min.js"></script>
+    <!-- ========== JS JQuery Import Zone ========== -->
+    <script src="/javascripts/jquery-3.3.1.min.js"></script>
+    <script src="/javascripts/jquery.mask.min.js"></script>
+    
 </body>
 
 </html>
