@@ -22,6 +22,8 @@ router.get('/', authenticationMiddleware(), function (req, res, next) {
     morador_id: ObjectId(req.user._id)
   }, function (err, results) {
     res.render('visitantes/visitanteIndex', {
+      title: "Visitantes", 
+      username: req.user.username,
       visitantes: results
     });
   });
@@ -29,7 +31,7 @@ router.get('/', authenticationMiddleware(), function (req, res, next) {
 
 /* Roda de GET para a view de criar um novo visitante */
 router.get('/novo', authenticationMiddleware(), function (req, res, next) {
-  res.render('visitantes/visitanteCreate');
+  res.render('visitantes/visitanteCreate', {title: "Novo Visitante", username: req.user.username});
 });
 
 /* Roda de GET para a view de criar um novo visitante */

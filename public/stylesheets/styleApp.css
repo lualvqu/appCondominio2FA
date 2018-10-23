@@ -172,3 +172,11 @@ input.input-icon, select.input-icon{
 .card-text{
     font-size: 1.4rem;
 }
+
+
+/* -------------------------------------------
+[BS3 INPUTS] */
+input.has-icon{
+    line-height: 1.2;
+    height: 50px;
+}
