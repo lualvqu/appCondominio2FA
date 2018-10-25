@@ -55,8 +55,8 @@ router.get('/logout', function(req, res){
 // ==============================================================================================//
 router.get('/teste', function (req, res, next) {
   res.render('telaTeste', {
-    title: "Tela Teste",
-    username: req.user.username
+    title: "Tela Teste"//,
+    //username: req.user.username
   });
 });
 
