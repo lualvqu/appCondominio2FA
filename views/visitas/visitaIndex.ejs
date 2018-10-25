@@ -1,85 +1,140 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>       
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Home Visita </title>
-        
-        <!-- ==========  CSS Bootstrap Import Zone ========== -->
-        <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
-        <link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css">
-        <!-- ========== CSS Personlizado Import Zone ========== -->
-        <link rel="stylesheet" href="/stylesheets/styleApp.css">  
-    </head>
-    <body>
-        <!-- Content Here -->
+<%- include('../partials/head.ejs'); -%>
 
-        <h1 class="m-3">Visitas</h1>
-        
-        <hr/>
-        <a class="btn btn-primary mx-3" href="/visitas/agendar"><b>+</b></a><label>Agendar nova visita</label>
-        <br/>
+<!-- Form de Visitante -->
+<div id="form-card" class="row" style="display:none;">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="header">
+                <h4 id="titulo-form" class="title">Agendar visita</h4>
+            </div>
+            <div class="content">
+                <form id="form-visita" method="POST" action="/visitas/agendar">
 
-        <hr/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group inner-addon left-addon">
+                                <i class="fa fa-user"></i>
+                                <select name="visitante" form="form-visita" class="form-control has-icon">
+                                    <option selected>Selecione ...</option>
+                                    <% visitantes.forEach(visitante => { %>
+                                        <option value="<%- visitante._id %>"> <%- visitante.nome %> </option>
+                                    <% }); %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="m-5">
-            <table class="table table-bordered table-hover vertical-center-items">
-                <caption>Lista de visitas agendadas</caption>
-                <thead class="thead-dark">
-                    <tr>
-                        <th class="text-center">#</th>
-                        <th>Data</th>
-                        <th>Hora</th>
-                        <th>Visitante</th>
-                        <th>Código</th>
-                        <th>Status</th>
-                        <th class="text-center">Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%  visitas.forEach( (visita, iterator) => { %>
-                        <tr>
-                            <td class="text-center"><%= iterator + 1 %></td>
-                            <td><%= visita.data %></td>
-                            <td><%= visita.hora %></td>
-                            <td><%= visita.visitante.nome %></td>
-                            <td><%= visita.codigo %></td>
-                            <% if (visita.isValido) { %>
-                                <td>Valida</td>
-                                <td class="text-center">
-                                    <button class="btn btn-danger mx-1" onclick="cancelar('<%= visita._id %>')">Cancelar</button>
-                                </td>
-                            <% } else { %>
-                                <td>Cancelada</td>
-                                <td class="text-center">
-                                    <button class="btn btn-danger mx-1" onclick="cancelar('<%= visita._id %>')" disabled>Cancelar</button>
-                                </td>
-                            <% } %>
-                        </tr>
-                    <% }); %>
-                </tbody>
-            </table>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group inner-addon left-addon">
+                                <i class="fa fa-calendar-alt"></i>
+                                <input name="data" type="date" class="form-control has-icon" placeholder="Data" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group inner-addon left-addon">
+                                <i class="fa fa-clock"></i>
+                                <input name="hora" type="time" class="form-control has-icon" placeholder="Hora" />
+                                <small id="hora-help" class="form-text text-muted">O visitante terá uma margem de entrada de 1h30m para mais e para menos.</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--a href="/visitantes" class="btn btn-secondary float-left">Voltar</a-->
+                    <button type="button" class="btn btn-secondary float-left" onclick="formVoltar()">Voltar</button>
+                    <button type="submit" class="btn btn-primary float-right">Agendar</button>
+                    <div class="clearfix"></div>
+
+                </form>
+            </div>
         </div>
-        
-        <a class="btn btn-secondary mx-3" href="/">Voltar para Home</a>
-        
-        <script type="text/javascript">
-            function cancelar(id){
-                $.ajax({
-                    url: 'visitas/cancelar',
-                    type: "DELETE",
-                    data: {id:id},
-                    success: function (){
-                        window.location.reload();
-                    }
-                });
-            }
-        </script>
+    </div>
+</div>
 
-        <!-- ========== JS Bootstrap Import Zone ========== -->
-        <script src="/javascripts/bootstrap.min.js"></script>
-        <script src="/javascripts/bootstrap.bundle.min.js"></script>
-        <!-- ========== JS JQuery Import Zone ========== -->
-        <script src="/javascripts/jquery-3.3.1.min.js"></script>
-    </body>
-</html>
+<!-- Index de Visitante -->
+<div id="index-card" class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="header row equal">
+                <div class="col-md-6">
+                    <h4 class="title">Visitas</h4>
+                    <p class="category">Lista de visitas agendadas</p>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <button class="btn btn-primary align-self-center" onclick="novo()"><i class="fa fa-plus-circle mr-2"></i></i>Agendar nova visita</button>
+                </div>
+            </div>
+            <div class="content table-responsive table-full-width">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th>Data</th>
+                            <th>Hora</th>
+                            <th>Visitante</th>
+                            <th>Código</th>
+                            <th>Status</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%  visitas.forEach( (visita, iterator) => { %>
+                            <tr>
+                                <td class="text-center"><%= iterator + 1 %></td>
+                                <td><%= visita.data %></td>
+                                <td><%= visita.hora %></td>
+                                <td><%= visita.visitante.nome %></td>
+                                <td><%= visita.codigo %></td>
+                                <% if (visita.isValido) { %>
+                                    <td>Valida</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-danger mx-1" onclick="cancelar('<%= visita._id %>')">Cancelar</button>
+                                    </td>
+                                <% } else { %>
+                                    <td>Cancelada</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-danger mx-1" onclick="cancelar('<%= visita._id %>')" disabled>Cancelar</button>
+                                    </td>
+                                <% } %>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts para controlar a pagina -->
+<script type="text/javascript">
+
+    function cancelar(id){
+        $.ajax({
+            url: 'visitas/cancelar',
+            type: "DELETE",
+            data: {id:id},
+            success: function (){
+                window.location.reload();
+            }
+        });
+    }
+
+    function novo() {
+        $('#form-visita')[0].reset();
+        $('#index-card').hide("fast");
+        $('#form-card').show("fast");
+
+    }
+
+    function submitForm() {
+        $('#form-visita').submit();
+    }
+
+    function formVoltar() {
+        $('#index-card').show("fast");
+        $('#form-card').hide("fast");
+        $('#form-visita')[0].reset();
+    }
+</script>
+
+<%- include('../partials/footer.ejs'); -%>

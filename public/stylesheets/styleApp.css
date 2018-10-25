@@ -64,8 +64,8 @@ body {
   .right-addon .fa { right: 0px;}
   
   /* add padding  */
-  .left-addon input  { padding-left:  40px; }
-  .right-addon input { padding-right: 40px; }
+  .left-addon input, .left-addon select  { padding-left:  40px; }
+  .right-addon input, .right-addon select { padding-right: 40px; }
   
   /* align button at bottom */
   .vertical-align-bottom { vertical-align: bottom !important; }
@@ -176,7 +176,7 @@ input.input-icon, select.input-icon{
 
 /* -------------------------------------------
 [BS3 INPUTS] */
-input.has-icon{
+input.has-icon, select.has-icon{
     line-height: 1.2;
     height: 50px;
 }

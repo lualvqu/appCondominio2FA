@@ -84,7 +84,6 @@ router.post('/autenticar/:tipo', function (req, res, next) {
 
       db.findVisitas(filtroVisita, async function (err, results) {
         if (results.length == 1 && dateUtils.verificarHorarioVisita(results[0].hora)) {
-          console.log("entrou aqui");
           let entradas = results[0].entradas;
           entradas.push({
             hora: dateUtils.getStringHora()

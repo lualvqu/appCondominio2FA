@@ -62,7 +62,7 @@
 
                     <!--a href="/visitantes" class="btn btn-secondary float-left">Voltar</a-->
                     <button type="button" class="btn btn-secondary float-left" onclick="formVoltar()">Voltar</button>
-                    <button type="submit" class="btn btn-primary float-right">Cadastrar</button>
+                    <button id="btn-submit" type="submit" class="btn btn-primary float-right">Cadastrar</button>
                     <div class="clearfix"></div>
 
                 </form>
@@ -162,6 +162,7 @@
     }
 
     function novo() {
+        $('#btn-submit').html('Cadastrar');
         $('#titulo-form').html('Cadastrar Visitante');
         $('#form-visitante').attr('action', '/visitantes/novo')[0].reset();
         $('#index-card').hide("fast");
@@ -178,7 +179,8 @@
             },
             success: function (data) {
                 $('#titulo-form').html('Editar dados do visitante');
-                $('#form-visitante').attr('action', 'visitantes/editar/' + data._id)
+                $('#btn-submit').html('Salvar alterações');
+                $('#form-visitante').attr('action', 'visitantes/editar/' + data._id);
                 $('input[name=nome]').val(data.nome);
                 $('input[name=rg]').val(data.rg);
                 $('input[name=cpf]').val(data.cpf);

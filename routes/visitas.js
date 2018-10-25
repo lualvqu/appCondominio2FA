@@ -16,8 +16,8 @@ function authenticationMiddleware() {
 
 const verificarTokenDuplicado = function (visitas, token) {
   let retorno = false;
-  for (let i = 0; i < visitas.length ; i++){
-    if ( visitas[i].codigo == token) {
+  for (let i = 0; i < visitas.length; i++) {
+    if (visitas[i].codigo == token) {
       retorno = true;
       break;
     }
@@ -35,9 +35,17 @@ const gerarRandomToken = function (size) {
 router.get('/', authenticationMiddleware(), function (req, res, next) {
   db.findVisitas({
     morador_id: ObjectId(req.user._id)
-  }, function (err, results) {
-    res.render('visitas/visitaIndex', {
-      visitas: results
+  }, function (err, visitas) {
+    db.findVisitantes({
+      morador_id: ObjectId(req.user._id)
+    }, function (err, visitantes) {
+      console.log(visitas);
+      res.render('visitas/visitaIndex', {
+        title: "Visitas",
+        username: req.user.username,
+        visitantes: visitantes,
+        visitas: visitas
+      });
     });
   });
 });
@@ -60,13 +68,13 @@ router.post('/agendar', authenticationMiddleware(), function (req, res, next) {
   };
 
   db.findVisitas(filtroVisita, function (err, results) {
-    
+
     let token = gerarRandomToken(6);
-    
+
     if (results.length > 0) {
-      while(verificarTokenDuplicado(results, token)){
+      while (verificarTokenDuplicado(results, token)) {
         token = gerarRandomToken(6);
-      }   
+      }
     }
 
     let visita = {
