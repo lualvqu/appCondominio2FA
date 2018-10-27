@@ -180,3 +180,9 @@ input.has-icon, select.has-icon{
     line-height: 1.2;
     height: 50px;
 }
+
+/*---------------------------------------------- */
+.image-blur {
+    -webkit-filter: blur(2px); /* Safari 6.0 - 9.0 */
+    filter: blur(2px);
+}

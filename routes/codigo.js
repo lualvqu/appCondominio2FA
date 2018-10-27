@@ -24,7 +24,9 @@ router.get('/', authenticationMiddleware(), async function (req, res, next) {
     qrCode = qrCode = await twoAuth.generateQR(req.user.hashSeed);
   }
   res.render('codigo/codigoIndex', {
-    qrCode: qrCode
+    title: "Código de acesso",
+    qrCode: qrCode,
+    username: req.user.username
   });
 });
 

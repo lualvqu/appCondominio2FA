@@ -1,52 +1,94 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>       
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Código 2Auth </title>
-        
-        <!-- ==========  CSS Bootstrap Import Zone ========== -->
-        <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
-        <link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css">
-        <!-- ========== CSS Personlizado Import Zone ========== -->
-        <link rel="stylesheet" href="/stylesheets/styleApp.css">  
-    </head>
-    <body>
-        <!-- Content Here -->
+<%- include('../partials/head.ejs'); -%>
+<div class="row">
+    <div class="col-lg-8 col-md-12">
+        <div class="card">
 
-        <h1 class="m-3">Código de configuração 2Auth</h1>
-        <hr/>
-
-        <% if (qrCode) { %>
-
-            <h2 class="my-5 ml-3">Utilize o QR código abaixo no seu 2Auth App de preferencia:</h2>
-
-            <div id="imgContainer" class="w-100 d-flex align-items-center justify-content-center">
-            
-                <img class="img-thumbnail" src="<%= qrCode %>"/>
-                <a class="btn btn-primary ml-3" href="/codigo/novoCodigo">Gerar novo código</a>
-            
+            <div class="header">
+                <h4 class="title">Código de Acesso</h4>
+                <p class="category">Utilize o QR código abaixo no seu 2Auth App de preferencia</p>
             </div>
 
-        <% } else { %>
+            <div class="content p-5">
+                <div id="menu">
 
-            <h2 class="my-5 ml-3">Voce nao possui código QR configurado. Deseja gerar um agora?</h2>
+                    <% if (!qrCode) { %>
 
-            <div id="btnContainer" class="w-100 d-flex align-items-center justify-content-center">
-                <a class="btn btn-primary ml-3" href="/codigo/novoCodigo">Gerar código</a>
+                    <div id="imgContainer" class="w-100 d-flex align-items-center justify-content-center">
+                        <div class="row equal">
+                            <div class="col-md-6 p-5">
+                                <img id="code-image" class="img-thumbnail image-blur" src="<%= qrCode %>" />
+                            </div>
+                            <div class="col-md-6 align-self-center">
+                                <button class="btn btn-primary btn-block ml-3" onclick="toogleBlurCode()"><i id="btn-icon"
+                                        class="mr-3 fa fa-eye"></i><span id="btn-text">Exibir código</span></button>
+                                <a class="btn btn-warning btn-block ml-3" href="/codigo/novoCodigo"><i class="mr-3 fa fa-sync-alt"></i>Gerar
+                                    novo código</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <% } else { %>
+
+                    <div class="jumbotron">
+                        <h1>Código não cadastrado</h1>
+                        <p>Você não possui um código QR configurado. Deseja gerar um agora?</p>
+                        <p><a class="btn btn-primary btn-lg" href="#" role="gerar código" href="/codigo/novoCodigo">Gerar código</a></p>
+                    </div>
+
+                    <% } %>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+        <div class="card">
+
+            <div class="header">
+                <h4 class="title">Sugestão</h4>
+                <p class="category">App sugerido por nós para cadastrar seu código de acesso</p>
             </div>
 
-        <% } %>
+            <div class="content p-5 d-fex justify-content-center">
 
-        <br/>
+                <img class="img-responsive my-5" src="/images/googleLogo.png">
 
-        <a class="btn btn-secondary m-3" href="/">Voltar</a>
+                <div class="w-100 d-flex justify-content-center">
+                    <div>
+                        <a class="m-5" target="_blank" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">
+                            <img class="img-responsive" src="/images/btn-google.png">
+                        </a>
+
+                        <a class="m-5" target="_blank" href="https://itunes.apple.com/br/app/google-authenticator/id388497605?mt=8">
+                            <img class="img-responsive" src="/images/btn-apple.png">
+                        </a>
+                    </div>
+                </div>
 
 
-        <!-- ========== JS Bootstrap Import Zone ========== -->
-        <script src="/javascripts/bootstrap.min.js"></script>
-        <script src="/javascripts/bootstrap.bundle.min.js"></script>
-        <!-- ========== JS JQuery Import Zone ========== -->
-        <script src="/javascripts/jquery-3.3.1.min.js"></script>
-    </body>
-</html>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script>
+    function toogleBlurCode() {
+        $('#code-image').toggleClass('image-blur');
+        $('#btn-text').text(function (i, text) {
+            return text === "Exibir código" ? "Esconder código" : "Exibir código";
+        });
+        $('#btn-icon').toggleClass('fa-eye fa-eye-slash');
+
+    }
+</script>
+
+
+<%- include('../partials/footer.ejs'); -%>
