@@ -14,7 +14,7 @@
                         <div class="col-md-12">
                             <div class="form-group inner-addon left-addon">
                                 <i class="fa fa-user"></i>
-                                <input name="nome" type="text" class="form-control has-icon" placeholder="Nome completo" />
+                                <input name="nome" type="text" class="form-control has-icon" placeholder="Nome completo" required/>
                             </div>
                         </div>
                     </div>
@@ -23,13 +23,13 @@
                         <div class="col-md-6">
                             <div class="form-group inner-addon left-addon">
                                 <i class="fa fa-id-card"></i>
-                                <input name="rg" type="text" class="form-control has-icon" placeholder="RG" />
+                                <input name="rg" type="text" class="form-control has-icon" placeholder="RG" required/>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group inner-addon left-addon">
                                 <i class="fa fa-id-badge"></i>
-                                <input name="cpf" type="text" class="form-control has-icon" placeholder="CPF" />
+                                <input name="cpf" type="text" class="form-control has-icon" placeholder="CPF" required/>
                             </div>
                         </div>
                     </div>
@@ -39,14 +39,14 @@
                         <div class="col-md-6">
                             <div class="form-group inner-addon left-addon">
                                 <i class="fa fa-phone"></i>
-                                <input name="telefoneFixo" type="text" class="form-control has-icon" placeholder="Telefone Fixo" />
+                                <input name="telefoneFixo" type="text" class="form-control has-icon" placeholder="Telefone Fixo" required/>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group inner-addon left-addon">
                                 <i class="fa fa-mobile-alt"></i>
-                                <input name="celular" type="text" class="form-control has-icon" placeholder="Celular" />
+                                <input name="celular" type="text" class="form-control has-icon" placeholder="Celular" required/>
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                         <div class="col-md-12">
                             <div class="form-group inner-addon left-addon">
                                 <i class="fa fa-envelope"></i>
-                                <input name="email" type="email" class="form-control has-icon" placeholder="Email" />
+                                <input name="email" type="email" class="form-control has-icon" placeholder="Email" required/>
                             </div>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                             </td>
                             <td class="text-center">
                                 <a class="btn btn-warning mx-1 btn-sm" onclick="editar('<%= visitante._id %>')">Editar</a>
-                                <button class="btn btn-danger mx-1 btn-sm" onclick="excluir('<%= visitante._id %>')">Excluir</button>
+                                <button disabled class="btn btn-danger mx-1 btn-sm" onclick="excluir('<%= visitante._id %>')">Excluir</button>
                             </td>
                         </tr>
                         <% }); %>

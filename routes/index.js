@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const teste = require('./../lib/utils/dateUtils');
-const mail = require('./../lib/mail');
-
 
 // Definindo Middleware de autenticacao
 function authenticationMiddleware() {
@@ -17,7 +14,7 @@ function authenticationMiddleware() {
 
 /* GET home page. */
 router.get('/', authenticationMiddleware(), function (req, res, next) {
-  res.render('index/home.ejs', {title: "Home", username: req.user.username});
+  res.render('index/home.ejs', {title: "Home", username: req.user.username, navIndex:1});
 });
 
 /* GET Rota da tela de Login */
@@ -53,11 +50,13 @@ router.get('/logout', function(req, res){
 // ==============================================================================================//
 /* ROTA DE TESTE QUE CHAMA A VIEW DE TESTE PARA TESTAR FUNCOES E MANDAR PARA A TELA */
 // ==============================================================================================//
+const moment = require('moment');
 router.get('/teste', function (req, res, next) {
-  res.render('telaTeste', {
-    title: "Tela Teste"//,
-    //username: req.user.username
-  });
+  console.log(moment("23:30:00","HH:mm:ss").add(90, "minutes"));
+  // res.render('telaTeste', {
+  //   title: "Tela Teste"//,
+  //   //username: req.user.username
+  // });
 });
 
 

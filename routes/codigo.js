@@ -26,7 +26,8 @@ router.get('/', authenticationMiddleware(), async function (req, res, next) {
   res.render('codigo/codigoIndex', {
     title: "Código de acesso",
     qrCode: qrCode,
-    username: req.user.username
+    username: req.user.username,
+    navIndex:4
   });
 });
 

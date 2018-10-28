@@ -24,6 +24,7 @@ router.get('/', authenticationMiddleware(), function (req, res, next) {
     res.render('visitantes/visitanteIndex', {
       title: "Visitantes", 
       username: req.user.username,
+      navIndex: 2,
       visitantes: results
     });
   });

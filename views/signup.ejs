@@ -33,7 +33,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-icon fa fa-user"></div>
                                 </div>
-                                <input name="username" type="text" class="form-control input-icon" placeholder="Username"/>
+                                <input name="username" type="text" class="form-control input-icon" placeholder="Username" required/>
                             </div>
                         </div>
                         <div class="form-group col-md-7">
@@ -42,7 +42,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-icon fa fa-envelope"></div>
                                 </div>
-                                <input name="email" type="email" class="form-control input-icon" placeholder="Email"/>
+                                <input name="email" type="email" class="form-control input-icon" placeholder="Email" required/>
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-icon fa fa-lock"></div>
                                 </div>
-                                <input name="password" type="password" class="form-control input-icon" placeholder="Senha"/>
+                                <input name="password" type="password" class="form-control input-icon" placeholder="Senha" required/>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
@@ -64,7 +64,7 @@
                                     <div class="input-icon fa fa-check-circle"></div>
                                 </div>
                                 <input name="confirm-password" type="password" class="form-control input-icon"
-                                    placeholder="Confirmar Senha"  />
+                                    placeholder="Confirmar Senha"  required/>
                             </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-icon fa fa-user-circle"></div>
                                 </div>
-                                <input name="nome" type="text" class="form-control input-icon" placeholder="Nome completo"/>
+                                <input name="nome" type="text" class="form-control input-icon" placeholder="Nome completo" required/>
                             </div>
                         </div>
                         <div class="form-group col-md-4">
@@ -85,7 +85,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-icon fa fa-id-card"></div>
                                 </div>
-                                <input name="rg" type="text" class="form-control input-icon" placeholder="RG"/>
+                                <input name="rg" type="text" class="form-control input-icon" placeholder="RG" required/>
                             </div>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-icon fa fa-calendar-alt"></div>
                                 </div>
-                                <input name="dataNascimento" type="text" class="form-control input-icon" placeholder="Data de nascimento"/>
+                                <input name="dataNascimento" type="text" class="form-control input-icon" placeholder="Data de nascimento" required/>
                             </div>
                         </div>
                         <div class="form-group col-md-7">
@@ -106,7 +106,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-icon fa fa-phone"></div>
                                 </div>
-                                <input name="telefone" type="text" class="form-control input-icon" placeholder="Telefone" />
+                                <input name="telefone" type="text" class="form-control input-icon" placeholder="Telefone" required/>
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-icon fa fa-building"></div>
                                 </div>
-                                <select name="bloco" form="cadastroForm" class="form-control input-icon"  />
+                                <select name="bloco" form="cadastroForm" class="form-control input-icon">
                                 <option selected>Selecione seu bloco ...</option>
                                 <% blocos.forEach(bloco => { %>
                                 <option value="<%- bloco %>">
@@ -136,8 +136,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-icon fa fa-sort-numeric-up"></div>
                                 </div>
-                                <input name="apartamento" type="text" class="form-control input-icon" placeholder="N&ordm; apartamento"
-                                    required />
+                                <input name="apartamento" type="text" class="form-control input-icon" placeholder="N&ordm; apartamento" required />
                             </div>
                         </div>
                     </div>

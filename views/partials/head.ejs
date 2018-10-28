@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="/images/favicon.ico">
+    <link rel="icon" href="/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <title>
@@ -51,25 +51,25 @@
                 </div>
 
                 <ul class="nav">
-                    <li class="active">
+                    <li <% if(navIndex === 1) { %> class="active" <% } else { %> <% } %> >
                         <a href="/">
                             <i class="fa fa-home"></i>
                             <p>Home</p>
                         </a>
                     </li>
-                    <li>
+                    <li <% if(navIndex === 2) { %> class="active" <% } else { %> <% } %> >
                         <a href="/visitantes">
                             <i class="fa fa-users"></i>
                             <p>Visitantes</p>
                         </a>
                     </li>
-                    <li>
+                    <li <% if(navIndex === 3) { %> class="active" <% } else { %> <% } %> >
                         <a href="/visitas">
                             <i class="fa fa-suitcase"></i>
                             <p>Visitas</p>
                         </a>
                     </li>
-                    <li>
+                    <li <% if(navIndex === 4) { %> class="active" <% } else { %> <% } %> >
                         <a href="/codigo">
                             <i class="fa fa-qrcode"></i>
                             <p>Código de Acesso</p>

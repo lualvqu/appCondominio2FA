@@ -43,6 +43,7 @@ router.get('/', authenticationMiddleware(), function (req, res, next) {
       res.render('visitas/visitaIndex', {
         title: "Visitas",
         username: req.user.username,
+        navIndex:3,
         visitantes: visitantes,
         visitas: visitas
       });
