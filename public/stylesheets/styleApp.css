@@ -186,3 +186,8 @@ input.has-icon, select.has-icon{
     -webkit-filter: blur(2px); /* Safari 6.0 - 9.0 */
     filter: blur(2px);
 }
+
+
+.img-home-mw{
+    max-width: 20rem!important;
+}
