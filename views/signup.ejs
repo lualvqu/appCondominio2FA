@@ -19,12 +19,12 @@
 
 <body>
     <div id="background-container" class="container-fluid h-100 d-flex align-items-center justify-content-center" style="background-image: url('/images/wallpaper.jpg');">
-        <div id="form-box" class="m-5 px-3 py-5 row">
-            <div class="col-md-4 col-sm-12 border-right">
+        <div id="form-box" class=" px-3 py-5 row" style="">
+            <div id="img-div" class="col-md-4 col-sm-12 border-right">
                 <h1 class="text-center" style="color:#495057">Criar conta</h1>
                 <img class="img-size-100" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTIwMCIgaGVpZ2h0PSIxMjAwIiB2aWV3Qm94PSIwIDAgMTIwMCAxMjAwIj48Zz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2MDAgNjAwKSBzY2FsZSgwLjY5IDAuNjkpIHJvdGF0ZSgwKSB0cmFuc2xhdGUoLTYwMCAtNjAwKSIgc3R5bGU9ImZpbGw6IzI1ODNkZjsiPjxzdmcgZmlsbD0iIzI1ODNkZiIgeG1sbnM6eD0iaHR0cDovL25zLmFkb2JlLmNvbS9FeHRlbnNpYmlsaXR5LzEuMC8iIHhtbG5zOmk9Imh0dHA6Ly9ucy5hZG9iZS5jb20vQWRvYmVJbGx1c3RyYXRvci8xMC4wLyIgeG1sbnM6Z3JhcGg9Imh0dHA6Ly9ucy5hZG9iZS5jb20vR3JhcGhzLzEuMC8iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxMDAgMTAwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGc+PGcgaTpleHRyYW5lb3VzPSJzZWxmIj48cGF0aCBkPSJNOTEuNyw4Ny42VjE4LjZMMzYuOSw2Ljl2ODAuN0gzM1YyNy40TDguMywzMy42djU0SDIuNXY1LjVoOTV2LTUuNUg5MS43eiBNMTYuNSw0Mi42aDguNnY4LjZoLTguNlY0Mi42eiBNMTYuNSw1Ny41aDguNiAgICB2OC42aC04LjZWNTcuNXogTTE2LjUsNzIuM2g4LjZWODFoLTguNlY3Mi4zeiBNNzQuOSwyNy42aDguNnY4LjZoLTguNlYyNy42eiBNNzQuOSw0Mi41aDguNnY4LjZoLTguNlY0Mi41eiBNNzQuOSw1Ny40aDguNlY2NiAgICBoLTguNlY1Ny40eiBNNzQuOSw3Mi4zaDguNnY4LjZoLTguNlY3Mi4zeiBNNjAsMjcuNmg4LjZ2OC42SDYwVjI3LjZ6IE02MCw0Mi41aDguNnY4LjZINjBWNDIuNXogTTYwLDU3LjRoOC42VjY2SDYwVjU3LjR6ICAgICBNNDUuMSwyNy42aDguNnY4LjZoLTguNlYyNy42eiBNNDUuMSw0Mi41aDguNnY4LjZoLTguNlY0Mi41eiBNNDUuMSw1Ny40aDguNlY2NmgtOC42VjU3LjR6IE00NS4xLDcyLjNoOC42djguNmgtOC42VjcyLjN6ICAgICBNNjAsNzIuM2g4LjZ2MTUuM0g2MFY3Mi4zeiI+PC9wYXRoPjwvZz48L2c+PC9zdmc+PC9nPjwvZz48L3N2Zz4=">
             </div>
-            <div class="col-md-8 col-sm-12 pl-5">
+            <div id="form-div" class="col-md-8 col-sm-12 pl-5">
                 <form id="cadastroForm" method="POST" action="/users/signup">
                     <div class="form-row">
                         <div class="form-group col-md-5">
@@ -141,10 +141,10 @@
                         </div>
                     </div>
                     <div id="buton-group" class="row">
-                        <div class="col-8">
+                        <div id="btn-faca-login" class="col-sm-12 col-md-8">
                             <a class="btn" href="/login">Faça login em vez disso</a>
                         </div>
-                        <div class="col-4">
+                        <div class="col-sm-12 col-md-4">
                             <button type="submit" class="btn btn-primary w-100">Criar conta</button>
                         </div>
                     </div>

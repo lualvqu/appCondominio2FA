@@ -12,20 +12,28 @@
     <!-- ========== CSS Personlizado Import Zone ========== -->
     <link rel="stylesheet" href="/stylesheets/styleApp.css">
 
+    <link rel="stylesheet" href="/stylesheets/fontawesome.min.css">
+
+
     <style>
         body {
-            background: #005C97;
-            /* fallback for old browsers */
-            background: -webkit-linear-gradient(to right, #363795, #005C97);
-            /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to right, #363795, #005C97);
-            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: rgba(54,98,241,1);
+            background: -moz-linear-gradient(left, rgba(54,98,241,1) 0%, rgba(57,65,176,1) 100%);
+            background: -webkit-gradient(left top, right top, color-stop(0%, rgba(54,98,241,1)), color-stop(100%, rgba(57,65,176,1)));
+            background: -webkit-linear-gradient(left, rgba(54,98,241,1) 0%, rgba(57,65,176,1) 100%);
+            background: -o-linear-gradient(left, rgba(54,98,241,1) 0%, rgba(57,65,176,1) 100%);
+            background: -ms-linear-gradient(left, rgba(54,98,241,1) 0%, rgba(57,65,176,1) 100%);
+            background: linear-gradient(to right, rgba(54,98,241,1) 0%, rgba(57,65,176,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3662f1', endColorstr='#3941b0', GradientType=1 );
         }
 
         .code-box {
             background-color: #0285d7;
             color: #fff;
             border-radius: 1rem;
+            -webkit-box-shadow: 20px 20px 30px -8px rgba(0,0,0,0.30);
+            -moz-box-shadow: 20px 20px 30px -8px rgba(0,0,0,0.30);
+            box-shadow: 20px 20px 30px -8px rgba(0,0,0,0.30);
         }
 
         p.number-input {
@@ -33,12 +41,22 @@
             color: #404954;
             font-size: 2rem;
             width: 100%;
+            height: 3rem;
+            text-align: center;
+            border-radius: 0.5rem;
+        }
+
+        p.number-keyboard {
+            color: #fff;
+            font-size: 2rem;
+            width: 100%;
+            height: 3rem;
             text-align: center;
         }
 
-        div.code-row{
-            min-width: 12rem;
-            max-width: 12rem;
+        div.code-row {
+            min-width: 18rem;
+            max-width: 18rem;
         }
     </style>
 
@@ -50,47 +68,136 @@
     <div class="container-fluid h-100 d-flex justify-content-center align-items-center">
 
         <!-- Box de Codigo -->
-        <div class="code-box p-5" style="max-width: 500px">
-            
+        <div class="code-box p-5" style="max-width: 500px; height:620px;">
+
             <!-- header do box -->
             <div id="header-box">
-                <h3>Codigo de Verificação</h3>
-                <p>Por favor, insira seu codigo de acesso</p>
+                <h3>Código de Acesso</h3>
+                <p class="text-center">Selecione o tipo de entrada</p>
+            </div>
+
+            <div id="box-tipo" class="row justify-content-center">
+                <div>
+                    <button id="btn-morador" class="btn btn-outline-light m-2">
+                        Morador
+                    </button>
+                    <button id="btn-visitante" class="btn btn-outline-light m-2">
+                        Visitante
+                    </button>
+                </div>                
             </div>
 
             <!-- Area vizualizador do codigo -->
-            <div id="code-content" class="d-flex justify-content-center">
+            <div id="code-content" class="row justify-content-center my-5" style="display:none;">
                 <div class="row code-row">
-                    <div class="col-3 p-2">
+                    <div class="col-2 p-1">
                         <p class="number-input">
-
+                            3
                         </p>
                     </div>
-                    <div class="col-3 p-2">
+                    <div class="col-2 p-1">
                         <p class="number-input">
-
+                            5
                         </p>
                     </div>
-                    <div class="col-3 p-2">
+                    <div class="col-2 p-1">
                         <p class="number-input">
-                            
+                            6
                         </p>
                     </div>
-                    <div class="col-3 p-2">
+                    <div class="col-2 p-1">
                         <p class="number-input">
-
+                            8
+                        </p>
+                    </div>
+                    <div class="col-2 p-1">
+                        <p class="number-input">
+                            1
+                        </p>
+                    </div>
+                    <div class="col-2 p-1">
+                        <p class="number-input">
+                            9
                         </p>
                     </div>
                 </div>
             </div>
 
+            <!-- Teclado Codigo -->
 
+            <div id="box-teclado" class="mt-5 px-4" style="display:none;">
+                <div class="row">
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            1
+                        </p>
+                    </div>
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            2
+                        </p>
+                    </div>
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            3
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            4
+                        </p>
+                    </div>
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            5
+                        </p>
+                    </div>
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            6
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            7
+                        </p>
+                    </div>
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            8
+                        </p>
+                    </div>
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            9
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            
+                        </p>
+                    </div>
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            0
+                        </p>
+                    </div>
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            <i class="fa fa-arrow-left"></i>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </div>
-
-
-
 
     <!-- ========== JS Bootstrap Import Zone ========== -->
     <script src="/javascripts/bootstrap.min.js"></script>

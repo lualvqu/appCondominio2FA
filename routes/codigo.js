@@ -71,7 +71,7 @@ router.post('/autenticar/:tipo', function (req, res, next) {
       if (user) {
         res.send(twoAuth.validarCodigoMorador(user.hashSeed, token));
       } else {
-        res.send("usuario invalido");
+        res.send(false);
       }
     });
 

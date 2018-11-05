@@ -165,9 +165,10 @@
         $('#btn-submit').html('Cadastrar');
         $('#titulo-form').html('Cadastrar Visitante');
         $('#form-visitante').attr('action', '/visitantes/novo')[0].reset();
-        $('#index-card').hide("fast");
-        $('#form-card').show("fast");
-
+        $('#index-card').hide("fast", function(){
+            $('#form-card').show("fast");
+        });
+tfunction()
     }
 
     function editar(id) {
@@ -187,8 +188,9 @@
                 $('input[name=telefoneFixo]').val(data.telefoneFixo);
                 $('input[name=celular]').val(data.celular);
                 $('input[name=email]').val(data.email);
-                $('#index-card').hide("fast");
-                $('#form-card').show("fast");
+                $('#index-card').hide("fast", function(){
+                    $('#form-card').show("fast");
+                });
                 $.notify("Usuario carregado", "info");
             }
         });
@@ -199,8 +201,9 @@
     }
 
     function formVoltar() {
-        $('#index-card').show("fast");
-        $('#form-card').hide("fast");
+        $('#form-card').hide("fast", function(){
+            $('#index-card').show("fast");
+        });
         $('#form-visitante')[0].reset();
     }
 </script>
