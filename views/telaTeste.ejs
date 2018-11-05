@@ -1,52 +1,209 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>       
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Código 2Auth </title>
-        
-        <!-- ==========  CSS Bootstrap Import Zone ========== -->
-        <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
-        <link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css">
-        <!-- ========== CSS Personlizado Import Zone ========== -->
-        <link rel="stylesheet" href="/stylesheets/styleApp.css">  
-    </head>
-    <body>
-        <!-- Content Here -->
 
-        <h1 class="m-3">Código de configuração 2Auth</h1>
-        <hr/>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Código 2Auth </title>
 
-        <% if (qrCode) { %>
+    <!-- ==========  CSS Bootstrap Import Zone ========== -->
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css">
+    <!-- ========== CSS Personlizado Import Zone ========== -->
+    <link rel="stylesheet" href="/stylesheets/styleApp.css">
 
-            <h2 class="my-5 ml-3">Utilize o QR código abaixo no seu 2Auth App de preferencia:</h2>
+    <link rel="stylesheet" href="/stylesheets/fontawesome.min.css">
 
-            <div id="imgContainer" class="w-100 d-flex align-items-center justify-content-center">
-            
-                <img class="img-thumbnail" src="<%= qrCode %>"/>
-                <a class="btn btn-primary ml-3" href="/codigo/novoCodigo">Gerar novo código</a>
-            
+
+    <style>
+        body {
+            background: rgba(54,98,241,1);
+            background: -moz-linear-gradient(left, rgba(54,98,241,1) 0%, rgba(57,65,176,1) 100%);
+            background: -webkit-gradient(left top, right top, color-stop(0%, rgba(54,98,241,1)), color-stop(100%, rgba(57,65,176,1)));
+            background: -webkit-linear-gradient(left, rgba(54,98,241,1) 0%, rgba(57,65,176,1) 100%);
+            background: -o-linear-gradient(left, rgba(54,98,241,1) 0%, rgba(57,65,176,1) 100%);
+            background: -ms-linear-gradient(left, rgba(54,98,241,1) 0%, rgba(57,65,176,1) 100%);
+            background: linear-gradient(to right, rgba(54,98,241,1) 0%, rgba(57,65,176,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3662f1', endColorstr='#3941b0', GradientType=1 );
+        }
+
+        .code-box {
+            background-color: #0285d7;
+            color: #fff;
+            border-radius: 1rem;
+            -webkit-box-shadow: 20px 20px 30px -8px rgba(0,0,0,0.30);
+            -moz-box-shadow: 20px 20px 30px -8px rgba(0,0,0,0.30);
+            box-shadow: 20px 20px 30px -8px rgba(0,0,0,0.30);
+        }
+
+        p.number-input {
+            background-color: #D4EAF9;
+            color: #404954;
+            font-size: 2rem;
+            width: 100%;
+            height: 3rem;
+            text-align: center;
+            border-radius: 0.5rem;
+        }
+
+        p.number-keyboard {
+            color: #fff;
+            font-size: 2rem;
+            width: 100%;
+            height: 3rem;
+            text-align: center;
+        }
+
+        div.code-row {
+            min-width: 18rem;
+            max-width: 18rem;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Content Here -->
+
+    <div class="container-fluid h-100 d-flex justify-content-center align-items-center">
+
+        <!-- Box de Codigo -->
+        <div class="code-box p-5" style="max-width: 500px; height:620px;">
+
+            <!-- header do box -->
+            <div id="header-box">
+                <h3>Código de Acesso</h3>
+                <p class="text-center">Selecione o tipo de entrada</p>
             </div>
 
-        <% } else { %>
-
-            <h2 class="my-5 ml-3">Voce nao possui código QR configurado. Deseja gerar um agora?</h2>
-
-            <div id="btnContainer" class="w-100 d-flex align-items-center justify-content-center">
-                <a class="btn btn-primary ml-3" href="/codigo/novoCodigo">Gerar código</a>
+            <div id="box-tipo" class="row justify-content-center">
+                <div>
+                    <button id="btn-morador" class="btn btn-outline-light m-2">
+                        Morador
+                    </button>
+                    <button id="btn-visitante" class="btn btn-outline-light m-2">
+                        Visitante
+                    </button>
+                </div>                
             </div>
 
-        <% } %>
+            <!-- Area vizualizador do codigo -->
+            <div id="code-content" class="row justify-content-center my-5" style="display:none;">
+                <div class="row code-row">
+                    <div class="col-2 p-1">
+                        <p class="number-input">
+                            3
+                        </p>
+                    </div>
+                    <div class="col-2 p-1">
+                        <p class="number-input">
+                            5
+                        </p>
+                    </div>
+                    <div class="col-2 p-1">
+                        <p class="number-input">
+                            6
+                        </p>
+                    </div>
+                    <div class="col-2 p-1">
+                        <p class="number-input">
+                            8
+                        </p>
+                    </div>
+                    <div class="col-2 p-1">
+                        <p class="number-input">
+                            1
+                        </p>
+                    </div>
+                    <div class="col-2 p-1">
+                        <p class="number-input">
+                            9
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-        <br/>
+            <!-- Teclado Codigo -->
 
-        <a class="btn btn-secondary m-3" href="/">Voltar</a>
+            <div id="box-teclado" class="mt-5 px-4" style="display:none;">
+                <div class="row">
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            1
+                        </p>
+                    </div>
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            2
+                        </p>
+                    </div>
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            3
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            4
+                        </p>
+                    </div>
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            5
+                        </p>
+                    </div>
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            6
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            7
+                        </p>
+                    </div>
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            8
+                        </p>
+                    </div>
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            9
+                        </p>
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            
+                        </p>
+                    </div>
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            0
+                        </p>
+                    </div>
+                    <div class="col-4 p-1">
+                        <p class="number-keyboard">
+                            <i class="fa fa-arrow-left"></i>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <!-- ========== JS Bootstrap Import Zone ========== -->
-        <script src="/javascripts/bootstrap.min.js"></script>
-        <script src="/javascripts/bootstrap.bundle.min.js"></script>
-        <!-- ========== JS JQuery Import Zone ========== -->
-        <script src="/javascripts/jquery-3.3.1.min.js"></script>
-    </body>
+    <!-- ========== JS Bootstrap Import Zone ========== -->
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/bootstrap.bundle.min.js"></script>
+    <!-- ========== JS JQuery Import Zone ========== -->
+    <script src="/javascripts/jquery-3.3.1.min.js"></script>
+</body>
+
 </html>

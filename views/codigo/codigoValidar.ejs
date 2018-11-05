@@ -1,89 +1,227 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>       
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Validar código de acesso </title>
-        
-        <!-- ==========  CSS Bootstrap Import Zone ========== -->
-        <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
-        <link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css">
-        <!-- ========== CSS Personlizado Import Zone ========== -->
-        <link rel="stylesheet" href="/stylesheets/styleApp.css">  
-    </head>
-    <body>
-        <!-- Content Here -->
 
-        <h1 class="m-3">Validar código de acesso</h1>
-        <hr/>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Validar código de acesso </title>
 
-        <div id="container-entrada-selector" class="mx-3">
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <button id="btn-morador" class="btn btn-outline-primary">
-                    Morador
+    <!-- ==========  CSS Bootstrap Import Zone ========== -->
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="/stylesheets/fontawesome.min.css">
+    <!-- ========== CSS Personlizado Import Zone ========== -->
+    <link rel="stylesheet" href="/stylesheets/styleApp.css">
+    <link rel="stylesheet" href="/assests/css/animate.min.css">
+
+
+    <style>
+        html {  
+            background: url("/images/wallpaper.jpg") no-repeat center center fixed; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        body{
+            background: rgba(0, 91, 234, 0.7);
+            background: -webkit-linear-gradient(bottom, rgba(0, 91, 234, 0.7), rgba(0, 198, 251, 0.7));
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <!-- Content Here -->
+
+    <div class="container py-5">
+
+        <div id="box-logo" class="row p-5">
+            <div class="col-12 text-center">
+                <img src="/images/logo.png">
+            </div>
+        </div>
+
+        <h1 class="text-center text-light">Código de acesso</h1>
+
+        <div id="container-entrada-selector" class="row justify-content-center m-5">
+            <div class="btn-group btn-group-lg btn-group-toggle" data-toggle="buttons">
+                <button id="btn-morador" class="btn btn-outline-light">
+                    <i class="fa fa-user mr-2"></i> Morador
                 </button>
-                <button id="btn-visitante" class="btn btn-outline-primary">
-                    Visitante
+                <button id="btn-visitante" class="btn btn-outline-light">
+                    Visitante <i class="fa fa-suitcase ml-2"></i>
                 </button>
             </div>
 
 
             <!--a id="btn-morador"   href="#" class="btn btn-outline-primary" onclick="alterarFormCodigo('morador')">Morador</a>
-            <a id="btn-visitante" href="#" class="btn btn-outline-primary" onclick="alterarFormCodigo('visitante')">Visitante</a-->
+                <a id="btn-visitante" href="#" class="btn btn-outline-primary" onclick="alterarFormCodigo('visitante')">Visitante</a-->
 
         </div>
 
-        
-        <div id="container-entrada-codigo" style="display:none;">
-            <div class="m-3">
+
+        <div id="container-entrada-codigo" class="row m-5 justify-content-center" style="display:none;">
+
+            <div id="validar-codigo-box">
                 <form method="POST" action="/codigo/autenticar" id="autenticarForm">
-                    <label for="bloco">Bloco: </label>
-                    <select name="bloco" form="autenticarForm">
-                        <% blocos.forEach(bloco => { %>
-                            <option value="<%- bloco %>"> <%- bloco %> </option>
-                        <% }); %>
-                    </select>
-                    <br />
-                    <label for="apartamento">Apartamento: </label>
-                    <input type="number" name="apartamento"/>
-                    <br />
-                    <label for="codigo">Código: </label>
-                    <input type="number" name="codigo"/>
-                    <br />
-                    <button class="btn btn-primary" type="submit">Prosseguir</button>
+                    <div class="form-group inner-addon left-addon">
+                        <label class="sr-only" for="bloco">Bloco</label>
+                        <i class="fa fa-building"></i>
+                        <select id="bloco" name="bloco" form="autenticarForm" class="form-control login-input-style"
+                            style="-webkit-appearance: none;">
+                            <option selected>Selecione o bloco ...</option>
+                            <% blocos.forEach(bloco => { %>
+                            <option value="<%- bloco %>">
+                                <%- bloco %>
+                            </option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <div class="form-group inner-addon left-addon">
+                        <label class="sr-only" for="apartamento">Apartamento</label>
+                        <i class="fa fa-sort-numeric-up"></i>
+                        <input type="number" class="form-control login-input-style" name="apartamento" placeholder="Apartamento"
+                            required />
+                    </div>
+                    <div class="form-group inner-addon left-addon">
+                        <label class="sr-only" for="codigo">Código</label>
+                        <i class="fa fa-qrcode"></i>
+                        <input type="number" class="form-control login-input-style" name="codigo" placeholder="Código"
+                            required />
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-primary w-100" type="button" onclick="validarCodigo()">Liberar entrada</button>
+                    </div>
                 </form>
+
             </div>
+
         </div>
 
-        <!-- ========== JS Bootstrap Import Zone ========== -->
-        <script src="/javascripts/bootstrap.min.js"></script>
-        <script src="/javascripts/bootstrap.bundle.min.js"></script>
-        <!-- ========== JS JQuery Import Zone ========== -->
-        <script src="/javascripts/jquery-3.3.1.min.js"></script>
+    </div>
 
-        <script>
-            $(function (){
-                $('#btn-morador').click(function (){                    
-                    $('#btn-morador').addClass('active');
-                    $('#btn-visitante').removeClass('active');
-                    $('#autenticarForm').attr('action', '/codigo/autenticar/morador')
-                    exibirCodigo()
-                });
-                $('#btn-visitante').click(function (){
-                    $('#btn-visitante').addClass('active');
-                    $('#btn-morador').removeClass('active');
-                    $('#autenticarForm').attr('action', '/codigo/autenticar/visitante')
-                    exibirCodigo()
-                });
+    <!-- ========== JS Bootstrap Import Zone ========== -->
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/bootstrap.bundle.min.js"></script>
+    <!-- ========== JS JQuery Import Zone ========== -->
+    <script src="/javascripts/jquery-3.3.1.min.js"></script>
+    <script src="/assets/js/bootstrap-notify.js"></script>
+
+
+    <script>
+        var idleTime = 0;
+        var idleInterval = null;
+        $(function () {
+
+            /* Idle Time Checker */
+            //Zero the idle timer on mouse movement.
+            $(this).mousemove(function (e) {
+                idleTime = 0;
             });
+            $(this).keypress(function (e) {
+                idleTime = 0;
+            });
+            /* -------------------- */
 
-            function exibirCodigo(){
-                if ($('#container-entrada-codigo').is(':hidden')){
+            $('#btn-morador').click(function () {
+                $('#btn-morador').addClass('active');
+                $('#btn-visitante').removeClass('active');
+                $('#autenticarForm').attr('action', '/codigo/autenticar/morador')
+                exibirCodigo()
+                this.blur()
+            });
+            $('#btn-visitante').click(function () {
+                $('#btn-visitante').addClass('active');
+                $('#btn-morador').removeClass('active');
+                $('#autenticarForm').attr('action', '/codigo/autenticar/visitante')
+                exibirCodigo()
+                this.blur()
+            });
+        });
+
+        function exibirCodigo() {
+            if ($('#container-entrada-codigo').is(':hidden')) {
+                $('#box-logo').hide('fast', function () {
                     $('#container-entrada-codigo').show('fast');
-                }
+                });
             }
+            $("#autenticarForm")[0].reset();
+            startTimer()
+        }
 
-        </script>
+        function esconderCodigo() {
+            if (!$('#container-entrada-codigo').is(':hidden')) {
+                $('#container-entrada-codigo').hide('fast', function () {
+                    $('#box-logo').show('fast');
+                });
+            }
+            $('#btn-morador').removeClass('active');
+            $('#btn-visitante').removeClass('active');
+            stopTimer();
+        }
 
-    </body>
+        function startTimer() {
+            idleInterval = setInterval(timerIncrement, 30000); // 30 Seconds
+        }
+
+        function stopTimer() {
+            clearInterval(idleInterval);
+        }
+
+        function timerIncrement() {
+            idleTime = idleTime + 1;
+            if (idleTime > 2) { // 1:30 minute
+                esconderCodigo();
+            }
+        }
+
+        function validarCodigo() {
+            var form = $("#autenticarForm");
+            var data = form.serializeArray();
+            $.ajax({
+                url: form.attr('action'),
+                type: "POST",
+                data: data,
+                success: function (data) {
+                    if (data) {
+                        esconderCodigo();
+                        $.notify({
+                            icon: 'fa fa-check',
+                            message: 'Entrada Liberada!'
+                        }, {
+                            type: 'success',
+                            placement: {
+                                from: "top",
+                                align: "center"
+                            },
+                            animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                            }
+                        });
+                    } else {
+                        $.notify({
+                            icon: 'fa fa-times',
+                            message: 'Acesso Negado!'
+                        }, {
+                            type: 'danger',
+                            placement: {
+                                from: "top",
+                                align: "center"
+                            },
+                            animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+
 </html>

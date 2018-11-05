@@ -97,18 +97,18 @@ body {
     width: 400px;
 }
 
-#login-box form div input, #login-box form div button{
+#login-box form div input, #login-box form div button, .login-input-style, #validar-codigo-box form div button{
     border-radius: 25px;
     line-height: 1.2;
-    height: 50px;
+    height: 50px!important;
     border:none;
 }
 
-#login-box form div button{
+#login-box form div button, #validar-codigo-box form div button{
   background-color: #333333;
 }
 
-#login-box form div button:hover{
+#login-box form div button:hover, #validar-codigo-box form div button:hover{
     background: #56CCF2;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #2F80ED, #56CCF2);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #2F80ED, #56CCF2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -185,4 +185,42 @@ input.has-icon, select.has-icon{
 .image-blur {
     -webkit-filter: blur(2px); /* Safari 6.0 - 9.0 */
     filter: blur(2px);
+}
+
+
+.img-home-mw{
+    max-width: 20rem!important;
+}
+
+/* Hide HTML5 Up and Down arrows. */
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+/* Responsividade SM com scroll */
+
+@media (max-width: 766px) {
+    #form-box{
+        overflow-x: hidden; 
+        overflow-y: auto; 
+        max-height:90%;
+    }
+    #form-box #form-div{
+        padding-left: 15px!important;
+    }
+
+    #form-box #img-div{
+        border-right: unset!important;
+    }
+    #btn-faca-login{
+        order: 13;
+    }
+
+
 }

@@ -52,11 +52,10 @@ router.get('/logout', function(req, res){
 // ==============================================================================================//
 const moment = require('moment');
 router.get('/teste', function (req, res, next) {
-  console.log(moment("23:30:00","HH:mm:ss").add(90, "minutes"));
-  // res.render('telaTeste', {
-  //   title: "Tela Teste"//,
-  //   //username: req.user.username
-  // });
+  res.render('telaTeste', {
+    title: "Tela Teste"//,
+    //username: req.user.username
+  });
 });
 
 
